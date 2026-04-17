@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Persistent Scheduler</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📅</text></svg>">
+</head>
+<body>
+    <h1>Simple Persistent Scheduler</h1>
+    <h2>For those of us with consistent routines but inconsistent start/end times.</h2>
+    <div class="description">
+        <p>This simple scheduling tool allows you to create a schedule that will remain accessible from the same device. Everything is saved to your device, it never gets sent anywhere else or shared with anyone.</p>
+        <p>Intentionally simple and limited - I made this to help manage my inconsistent sleep patterns.  No logging in or accounts needed, but no fancy features either.</p>
+        <p>Add new tasks and their time in minutes. Choose your intended start or end time. Checkboxes don't do anything, they're just for you.</p>
+        <p>Click "Calculate" to calculate your schedule and save it for next time. Previous schedules will be overwritten. Click "Clear Schedule" to reset everything, including your saved schedule.</p>
+    </div>
+    <label for="start-time">Start time:</label><input type="time" name="start-time"><button>Clear</button>
+    <ol>
+        <li><input type="checkbox"><input type="text" placeholder="task"><input type="number" placeholder="60"></li>
+    </ol>
+    <button class="add-new-row">Add New Row</button>
+    <label for="end-time">End time:</label><input type="time" name="end-time"><button class="clear">Clear</button>
+    <button id="calculate">Calculate!</button>
+    <button id="clear-all">Clear schedule</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
