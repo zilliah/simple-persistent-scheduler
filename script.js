@@ -2,6 +2,13 @@ const addBtn = document.querySelector(".add-new-row");
 const orderedListNode = document.querySelector("ol");
 let schedule = [];
 
+//check for saved schedule
+const saved = localStorage.getItem("saved-schedule");
+if (saved) {
+    // const savedArr = readSavedSchedule(saved);
+    // console.log(savedArr);
+    displaySavedSchedule(readSavedSchedule(saved));
+}
 
 //add and remove buttons 
 updateRemovalButtons();
@@ -49,21 +56,20 @@ function updateRemovalButtons() {
 // CALCULATE BUTTON: calculate schedule + save to local storage
 const calculateBtn = document.querySelector("#calculate");
 calculateBtn.addEventListener("click", (e) => {
-    schedule = readPageSchedule(orderedListNode); //TODO add read saved schedule
-    console.log(schedule);
+    schedule = readPageSchedule(orderedListNode);
+    // console.log(schedule);
     saveSchedule(schedule);
 });
 
 //read schedule from input boxes. returns schedule array
 function readPageSchedule(liNodeList) {
     const taskList = liNodeList.childNodes; //actual notes index from 1...why? innerText?
-    console.log(taskList)//TODO error for empty list
+    // console.log(taskList)//TODO error for empty list
     let readSchedule = [];
-    for (let i = 1; i < taskList.length; i++) {
+    for (let i = 0; i < taskList.length; i++) {
         let taskName = taskList[i].childNodes[1].value;
         //TODO add number validation + throw error if not a number + say where
         let taskTime = taskList[i].childNodes[2].value;
-        console.log(taskName + " " + taskTime);
         readSchedule.push({[taskName]: taskTime});
     };
     return readSchedule;
@@ -73,7 +79,6 @@ function readPageSchedule(liNodeList) {
 //returns schedule as a string
 function saveSchedule(scheduleArray) {
     let scheduleString = "";
-
     scheduleArray.forEach((el) => {
         for (let key in el) scheduleString += key + ":" + el[key];
         scheduleString+= ",";
@@ -84,17 +89,30 @@ function saveSchedule(scheduleArray) {
 }
 
 //read schedule from local storage
-//return schedule array
-//do the saving part first
+//returns saved schedule as array of objects with one key/value
+//OR returns null if no saved schedule
 function readSavedSchedule() {
     const scheduleString = localStorage.getItem("saved-schedule");
-    console.log(scheduleString);
+    // console.log(scheduleString);
     if (schedule) {
-        const scheduleArray = scheduleString.split(",");
-        console.log(scheduleArray);
-        //create list items for each element
-        //fill in saved data, after parsing the string into an array
+        let scheduleArray = scheduleString.split(",");
+        return scheduleArray.map((str) => {
+            let arr = str.split(":");
+            return {[arr[0]]: arr[1]}
+        });
     } else return null;
+}
+
+//show saved schedule in editable input boxes
+//returns nothing
+function displaySavedSchedule(arr) {
+    for (const task of arr) {
+        let li = newTaskRow();
+        let inputEls = li.childNodes;
+        inputEls[1].setAttribute("value", Object.keys(task)[0]);
+        inputEls[2].setAttribute("value", Object.values(task)[0]);
+        orderedListNode.append(li);
+    }
 }
 
 //CLEAR:
