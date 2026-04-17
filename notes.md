@@ -1,17 +1,22 @@
 # TODO
 - will need to output with start time of each task
     -> just add as text to li (start of row is fine)
-
-
-- reload from saved
-
 - number validation
+
+- add donation link (patreon?)
+
+
+# CURR
+- need to do time calcs (not done yet)
+- errors for missing start/end time, or having both
+    -> this is done, but what about saving form w/out a specific time?
+    -> maybe allow it to run but prevent calculations
 
 
 # Error handling for
-- errors for missing start/end time, or having both
 - empty list (error w/ nothing filled in, fails silently but error in console)
-- time isn't numbers
+- empty tasks
+- time isn't numbers (can enter letters on FF)
 - entires with blank stuff 
 
 # make fancier:
@@ -28,3 +33,4 @@
 
 # DONE
 - clear schedule
+- reload from saved

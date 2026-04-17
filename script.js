@@ -48,6 +48,7 @@ function updateRemovalButtons() {
 const calculateBtn = document.querySelector("#calculate");
 calculateBtn.addEventListener("click", e => {
     validateTimeInput();
+    
     schedule = readPageSchedule(orderedListNode);
     saveSchedule(schedule);
 });
