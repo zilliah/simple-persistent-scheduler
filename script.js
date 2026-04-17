@@ -1,12 +1,12 @@
 const addBtn = document.querySelector(".add-new-row");
-const list = document.querySelector("ol");
+const orderedListNode = document.querySelector("ol");
 let schedule = [];
 
 
 //add and remove buttons 
 updateRemovalButtons();
 addBtn.addEventListener("click", (e) => {
-    list.appendChild(newTaskRow());
+    orderedListNode.appendChild(newTaskRow());
     updateRemovalButtons();
 });
 
@@ -49,24 +49,21 @@ function updateRemovalButtons() {
 // CALCULATE BUTTON: calculate schedule + save to local storage
 const calculateBtn = document.querySelector("#calculate");
 calculateBtn.addEventListener("click", (e) => {
-    console.log("calculating, beep boop");
-
-    schedule = readPageSchedule(list);
-
+    schedule = readPageSchedule(orderedListNode); //TODO add read saved schedule
     console.log(schedule);
     saveSchedule(schedule);
-
 });
 
 //read schedule from input boxes. returns schedule array
 function readPageSchedule(liNodeList) {
     const taskList = liNodeList.childNodes; //actual notes index from 1...why? innerText?
-    //TODO error for empty list
+    console.log(taskList)//TODO error for empty list
     let readSchedule = [];
     for (let i = 1; i < taskList.length; i++) {
-        let taskName = taskList[i].childNodes[0].value;
+        let taskName = taskList[i].childNodes[1].value;
         //TODO add number validation + throw error if not a number + say where
-        let taskTime = taskList[i].childNodes[1].value;
+        let taskTime = taskList[i].childNodes[2].value;
+        console.log(taskName + " " + taskTime);
         readSchedule.push({[taskName]: taskTime});
     };
     return readSchedule;
@@ -91,6 +88,7 @@ function saveSchedule(scheduleArray) {
 //do the saving part first
 function readSavedSchedule() {
     const scheduleString = localStorage.getItem("saved-schedule");
+    console.log(scheduleString);
     if (schedule) {
         const scheduleArray = scheduleString.split(",");
         console.log(scheduleArray);

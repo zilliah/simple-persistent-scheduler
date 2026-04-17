@@ -19,7 +19,8 @@
 - allow reordering of tasks
 - allow multiple schedules
 - dark mode/colour selector
-- have checkboxes grey stuff out
+- checkboxes (tried it but it messed stuff up and it's lower priority so ignoring for now)
+    - have checkboxes grey stuff out
     - uncheck all boxes
     - make them opional?
 
