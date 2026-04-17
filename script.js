@@ -4,11 +4,7 @@ let schedule = [];
 
 //check for saved schedule
 const saved = localStorage.getItem("saved-schedule");
-if (saved) {
-    // const savedArr = readSavedSchedule(saved);
-    // console.log(savedArr);
-    displaySavedSchedule(readSavedSchedule(saved));
-}
+if (saved) displaySavedSchedule(readSavedSchedule(saved));
 
 //add and remove buttons 
 updateRemovalButtons();
@@ -105,13 +101,21 @@ function readSavedSchedule() {
 
 //show saved schedule in editable input boxes
 //returns nothing
+//TODO off by one error - doesn't autofill the first box
 function displaySavedSchedule(arr) {
-    for (const task of arr) {
-        let li = newTaskRow();
-        let inputEls = li.childNodes;
-        inputEls[1].setAttribute("value", Object.keys(task)[0]);
-        inputEls[2].setAttribute("value", Object.values(task)[0]);
-        orderedListNode.append(li);
+    // for (const task of arr) {
+    for (let i = 0; i < arr.length; i++) {
+        if (i === 0) {
+            let firstLiNodes = orderedListNode.firstChild.childNodes;
+            firstLiNodes[1].setAttribute("value", Object.keys(arr[i])[0]);
+            firstLiNodes[2].setAttribute("value", Object.values(arr[i])[0]);
+        } else {
+            let li = newTaskRow();
+            let inputEls = li.childNodes;
+            inputEls[1].setAttribute("value", Object.keys(arr[i])[0]);
+            inputEls[2].setAttribute("value", Object.values(arr[i])[0]);
+            orderedListNode.append(li);
+        }
     }
 }
 
