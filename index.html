@@ -8,14 +8,16 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📅</text></svg>">
 </head>
 <body>
-    <h1>Simple Persistent Scheduler</h1>
-    <h2>For anyone with routines that happen at inconsistent times</h2>
-
+    
     <main>
+        <header>
+            <h1>Simple Persistent Scheduler</h1>
+            <h2>When you have consistent routines at inconsistent times</h2>
+        </header>
         <div class="interactive flex">
             <div class="time-input">
-                <div><label for="start-time">Start time:</label><input type="time" name="start-time" id="start-time"><button class="clear-time">Clear</button></div>
-                <div><label for="end-time">End time:</label><input type="time" name="end-time" id="end-time"><button class="clear-time">Clear</button></div>
+                <label for="start-time">Start time:</label><input type="time" name="start-time" id="start-time"><button class="clear-time">Clear</button>
+                <label for="end-time">End time:</label><input type="time" name="end-time" id="end-time"><button class="clear-time">Clear</button>
             </div>
         
             <ol><li><input type="checkbox"><input type="text" placeholder="task"><input type="number" placeholder="Time in minutes"></li></ol>
@@ -23,7 +25,7 @@
             <div class="action-buttons flex">
                 <button class="add-new-row">Add Task</button>
                 <button id="calculate">Calculate!</button>
-                <button id="clear-all">Clear All/Saved</button>
+                <button id="clear-all">Clear Everything</button>
             </div>
         </div>
 
@@ -39,12 +41,12 @@
                 <p>Choose your start or end time. Start and end times are not saved and can be removed with the "Clear" button.</p>
             </div>
             <div>
-                <p>Click "Calculate" to calculate your schedule and save it for next time.</p>
-                <p>Click "Clear Schedule" to reset everything, including your saved schedule. Previous schedules will be overwritten.</p>
+                <p>Click "Calculate!" to calculate your schedule and save it for next time. Any previous schedules will be overwritten.</p>
+                <p>Click "Clear Everything" to reset everything, including your saved schedule.</p>
             </div>
             <div>
                 <p>Everything is saved to your device. No information gets sent anywhere else or shared with anyone else.</p>
-                <p>Want to double check? The code is <a href="https://github.com/zilliah/simple-persistent-scheduler" target="_blank">freely available on Github</a>. Feel free to contribute!</p>
+                <p>Want to double check? The code is <a href="https://github.com/zilliah/simple-persistent-scheduler" target="_blank">shared on Github</a>. Feel free to contribute!</p>
                 <p>Made by <a href="https://kerrysmart.ca" target="_blank">Kerry Smart</a> - come say hi if you need a website :)</p>
             </div>
         </div>

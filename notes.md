@@ -4,7 +4,7 @@
 - number validation
 
 - add donation link (patreon?)
-
+- did colours with flux on, look at in daylight
 
 # CURR
 - need to do time calcs (not done yet)
@@ -27,8 +27,9 @@
 - checkboxes (tried it but it messed stuff up and it's lower priority so ignoring for now)
     - have checkboxes grey stuff out
     - uncheck all boxes
-    - make them opional?
+    - make them optional?
 - "set to now" for time buttons?
+- could add a "back to top" button at the bottom if the list is longer than 6 or sth? probs not worth it tho
 
 
 # DONE
