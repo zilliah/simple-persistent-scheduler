@@ -8,11 +8,10 @@ if (saved) displaySavedSchedule(readSavedSchedule(saved));
 
 //add and remove buttons 
 updateRemovalButtons();
-addBtn.addEventListener("click", (e) => {
+addBtn.addEventListener("click", e => {
     orderedListNode.appendChild(newTaskRow());
     updateRemovalButtons();
 });
-
 function newTaskRow() {
     const li = document.createElement("li");
 
@@ -32,31 +31,28 @@ function newTaskRow() {
     li.append(checkbox, inputText, inputNumber, btnX);
     return li;
 }
-
 function removeRow(btn) {
     btn.parentElement.remove();
 }
-
 //note: first row is not deletable and does not have X btn intentionally 
 function updateRemovalButtons() {
     const btns = document.querySelectorAll(".delete-row");
     // console.log(btns);
-    btns.forEach((node) => {
-         node.addEventListener("click", (e) => removeRow(node));
+    btns.forEach(node => {
+         node.addEventListener("click", e => removeRow(node));
     });
 
 }
 
-
-
 // CALCULATE BUTTON: calculate schedule + save to local storage
 const calculateBtn = document.querySelector("#calculate");
-calculateBtn.addEventListener("click", (e) => {
+calculateBtn.addEventListener("click", e => {
+    validateTimeInput();
     schedule = readPageSchedule(orderedListNode);
-    // console.log(schedule);
     saveSchedule(schedule);
 });
 
+// -------- DATA FUNCTIONS --------------------
 //read schedule from input boxes. returns schedule array
 function readPageSchedule(liNodeList) {
     const taskList = liNodeList.childNodes; //actual notes index from 1...why? innerText?
@@ -70,12 +66,11 @@ function readPageSchedule(liNodeList) {
     };
     return readSchedule;
 }
-
 //save schedule to local storage as a string
 //returns schedule as a string
 function saveSchedule(scheduleArray) {
     let scheduleString = "";
-    scheduleArray.forEach((el) => {
+    scheduleArray.forEach(el => {
         for (let key in el) scheduleString += key + ":" + el[key];
         scheduleString+= ",";
     });
@@ -83,7 +78,6 @@ function saveSchedule(scheduleArray) {
     localStorage.setItem("saved-schedule", scheduleString);
     return scheduleString;
 }
-
 //read schedule from local storage
 //returns saved schedule as array of objects with one key/value
 //OR returns null if no saved schedule
@@ -92,18 +86,15 @@ function readSavedSchedule() {
     // console.log(scheduleString);
     if (schedule) {
         let scheduleArray = scheduleString.split(",");
-        return scheduleArray.map((str) => {
+        return scheduleArray.map(str => {
             let arr = str.split(":");
             return {[arr[0]]: arr[1]}
         });
     } else return null;
 }
-
 //show saved schedule in editable input boxes
 //returns nothing
-//TODO off by one error - doesn't autofill the first box
 function displaySavedSchedule(arr) {
-    // for (const task of arr) {
     for (let i = 0; i < arr.length; i++) {
         if (i === 0) {
             let firstLiNodes = orderedListNode.firstChild.childNodes;
@@ -119,15 +110,27 @@ function displaySavedSchedule(arr) {
     }
 }
 
-//CLEAR:
+// ----------- TIME FUNCTIONS -----------------
+function validateTimeInput() {
+    const startTime = document.querySelector("#start-time").value;
+    const endTime = document.querySelector("#end-time").value;
+    if (startTime && endTime) alert("Choose a start time OR an end time, not both.");
+    else if (!startTime && !endTime) alert("Start or end time needed.");
+}
+
+
+// ---------- CLEAR DATA/ETC --------------
 // clear start/end time
-const clearBtns = document.querySelectorAll(".clear");
+const timeBtns = document.querySelectorAll(".clear-time");
+console.log(timeBtns);
+timeBtns.forEach(btn => btn.addEventListener("click", e => btn.previousElementSibling.value = ""));
 
 //clear schedule
 const clearAllBtn = document.querySelector("#clear-all");
-clearAllBtn.addEventListener("click", (e) => clearSchedule());
+clearAllBtn.addEventListener("click", e => clearSchedule());
 function clearSchedule() {
     localStorage.clear();
     window.location.reload(true); 
     //"true" for hard refresh only works in FF, TODO clear on-page input in other browsers. but ok for FF dev't
+    //will go through and reset values for all the inputs I guess? forcing a hard refresh for other browsers looks annoying
 }

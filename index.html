@@ -13,13 +13,19 @@
     <div class="description">
         <p>This simple scheduling tool allows you to create a schedule that will remain accessible from the same device. Everything is saved to your device, it never gets sent anywhere else or shared with anyone.</p>
         <p>Intentionally simple and limited - I made this to help manage my inconsistent sleep patterns.  No logging in or accounts needed, but no fancy features either.</p>
-        <p>Add new tasks and their time in minutes. Choose your intended start or end time.</p>
+        <p>Add new tasks and their time in minutes. Choose your intended start or end time. Start and end times are not saved.</p>
         <p>Click "Calculate" to calculate your schedule and save it for next time. Previous schedules will be overwritten. Click "Clear Schedule" to reset everything, including your saved schedule.</p>
     </div>
-    <label for="start-time">Start time:</label><input type="time" name="start-time" id="start-time"><button>Clear</button>
+    
+    
+    <label for="start-time">Start time:</label><input type="time" name="start-time" id="start-time"><button class="clear-time">Clear</button>
+    
     <ol><li><input type="checkbox"><input type="text" placeholder="task"><input type="number" placeholder="60"></li></ol>
+
     <button class="add-new-row">Add New Row</button>
-    <label for="end-time">End time:</label><input type="time" name="end-time" id="end-time"><button class="clear">Clear</button>
+
+    <label for="end-time">End time:</label><input type="time" name="end-time" id="end-time"><button class="clear-time">Clear</button>
+
     <button id="calculate">Calculate!</button>
     <button id="clear-all">Clear All/Saved</button>
 

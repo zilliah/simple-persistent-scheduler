@@ -23,7 +23,7 @@
     - have checkboxes grey stuff out
     - uncheck all boxes
     - make them opional?
-
+- "set to now" for time buttons?
 
 
 # DONE
