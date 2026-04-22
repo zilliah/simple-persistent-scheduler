@@ -5,6 +5,7 @@
 
 - add donation link (patreon?)
 - did colours with flux on, look at in daylight
+- maybe add a "saved" message
 
 # CURR
 - need to do time calcs (not done yet)
@@ -30,7 +31,8 @@
     - make them optional?
 - "set to now" for time buttons?
 - could add a "back to top" button at the bottom if the list is longer than 6 or sth? probs not worth it tho
-
+- refactor into separate files?
+- let tasks be hours + minutes?
 
 # DONE
 - clear schedule

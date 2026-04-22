@@ -20,15 +20,22 @@ function newTaskRow() {
     const inputText = document.createElement("input");
     inputText.setAttribute("type", "text");
     inputText.setAttribute("placeholder", "task");
-    const inputNumber = document.createElement("input");
-    inputNumber.setAttribute("type", "number");
-    inputNumber.setAttribute("placeholder", "60");
+    const inputMins = document.createElement("input");
+    inputMins.setAttribute("type", "number");
+    inputMins.setAttribute("name", "hours");
+    inputMins.classList.add("hours");
+    inputMins.setAttribute("placeholder", "hours");
+    const inputHours = document.createElement("input");
+    inputHours.setAttribute("type", "number");
+    inputHours.setAttribute("name", "minutes");
+    inputHours.classList.add("minutes");
+    inputHours.setAttribute("placeholder", "minutes");
 
     const btnX = document.createElement("button")
     btnX.textContent="X";
     btnX.classList.add("delete-row");
 
-    li.append(checkbox, inputText, inputNumber, btnX);
+    li.append(checkbox, inputText, inputHours, inputMins, btnX);
     return li;
 }
 function removeRow(btn) {
@@ -47,13 +54,14 @@ function updateRemovalButtons() {
 // CALCULATE BUTTON: calculate schedule + save to local storage
 const calculateBtn = document.querySelector("#calculate");
 calculateBtn.addEventListener("click", e => {
-    validateTimeInput();
+    getInitialTime();
     
     schedule = readPageSchedule(orderedListNode);
     saveSchedule(schedule);
 });
 
-// -------- DATA FUNCTIONS --------------------
+
+// -------- TASK FUNCTIONS --------------------
 //read schedule from input boxes. returns schedule array
 function readPageSchedule(liNodeList) {
     const taskList = liNodeList.childNodes; //actual notes index from 1...why? innerText?
@@ -112,18 +120,38 @@ function displaySavedSchedule(arr) {
 }
 
 // ----------- TIME FUNCTIONS -----------------
-function validateTimeInput() {
-    const startTime = document.querySelector("#start-time").value;
-    const endTime = document.querySelector("#end-time").value;
-    if (startTime && endTime) alert("Choose a start time OR an end time, not both.");
-    else if (!startTime && !endTime) alert("Start or end time needed.");
+function getInitialTime() {
+
+
+    const timeInput = {
+        "start": document.querySelector("#start-time").value, //TMP gives 24h value. can also get valueAsDate
+        "end": document.querySelector("#end-time").value
+    };
+    const workableTime = {};
+
+    if (timeInput.start) {
+        console.log("calculating from startTime");
+        workableTime.start = Temporal.PlainTime.from(timeInput.start);
+        document.querySelector("#end-time").value = 0;
+    } else if (timeInput.end) {
+        console.log("calculating from endTime");
+        workableTime.end = Temporal.PlainTime.from(timeInput.end);
+    } else {
+        alert("No start or end time: tasks have been saved but schedule is not calculated.");
+    }
+
+    console.log(workableTime);
+    return workableTime;
 }
 
+
+//  ------------ INFO NOTICES -----------------
+// TODO
 
 // ---------- CLEAR DATA/ETC --------------
 // clear start/end time
 const timeBtns = document.querySelectorAll(".clear-time");
-console.log(timeBtns);
+// console.log(timeBtns);
 timeBtns.forEach(btn => btn.addEventListener("click", e => btn.previousElementSibling.value = ""));
 
 //clear schedule

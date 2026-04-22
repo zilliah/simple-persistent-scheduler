@@ -20,7 +20,7 @@
                 <label for="end-time">End time:</label><input type="time" name="end-time" id="end-time"><button class="clear-time">Clear</button>
             </div>
         
-            <ol><li><input type="checkbox"><input type="text" placeholder="task"><input type="number" placeholder="Time in minutes"></li></ol>
+            <ol><li><input type="checkbox"><input type="text" placeholder="task"><input type="number" name="hours" class="hours" placeholder="hours"><input type="number" name="minutes" class="minutes" placeholder="Minutes"></li></ol>
 
             <div class="action-buttons flex">
                 <button class="add-new-row">Add Task</button>
@@ -33,12 +33,12 @@
             <div>
                 <p>This simple scheduling tool allows you to create an editable saved schedule.</p>
                 <p>No logging in, creating accounts, or downloading apps...but no fancy features either.</p>
-                <p>Only one schedule available for now. (Want more? Consider paying me.)</p>
+                <p>Only one schedule available for now. <!--(Want more? Consider paying me.) --></p>
             </div>
             <div>
                 <p>Add new tasks and their time in minutes.</p>
                 <p>Click "Add Task" to add a new task, or "X" to remove a task.</p>
-                <p>Choose your start or end time. Start and end times are not saved and can be removed with the "Clear" button.</p>
+                <p>Choose your start or end time. Start and end times are not saved and can be removed with the "Clear" button. Start time will be used if both start and end times are included.</p>
             </div>
             <div>
                 <p>Click "Calculate!" to calculate your schedule and save it for next time. Any previous schedules will be overwritten.</p>
