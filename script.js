@@ -70,9 +70,11 @@ function readPageSchedule(liNodeList) {
     for (let i = 0; i < taskList.length; i++) {
         let taskName = taskList[i].childNodes[1].value;
         //TODO add number validation + throw error if not a number + say where
-        let taskTime = taskList[i].childNodes[2].value;
-        readSchedule.push({[taskName]: taskTime});
+        let taskHours = taskList[i].childNodes[2].value;
+        let taskMinutes = taskList[i].childNodes[3].value;
+        readSchedule.push({[taskName]: Temporal.Duration.from({ hours: Number(taskHours), minutes: Number(taskMinutes)})});;
     };
+    console.log(readSchedule);
     return readSchedule;
 }
 //save schedule to local storage as a string
@@ -80,7 +82,7 @@ function readPageSchedule(liNodeList) {
 function saveSchedule(scheduleArray) {
     let scheduleString = "";
     scheduleArray.forEach(el => {
-        for (let key in el) scheduleString += key + ":" + el[key];
+        for (let key in el) scheduleString += key + ":" + el[key].toString();
         scheduleString+= ",";
     });
     scheduleString = scheduleString.slice(0, length - 1);
@@ -141,7 +143,7 @@ function getInitialTime() {
         //TODO change to on page message instead of popup
     }
 
-    console.log(workableTime);
+    // console.log(workableTime);
     return workableTime;
 }
 
