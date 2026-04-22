@@ -20,16 +20,16 @@ function newTaskRow() {
     const inputText = document.createElement("input");
     inputText.setAttribute("type", "text");
     inputText.setAttribute("placeholder", "task");
-    const inputMins = document.createElement("input");
-    inputMins.setAttribute("type", "number");
-    inputMins.setAttribute("name", "hours");
-    inputMins.classList.add("hours");
-    inputMins.setAttribute("placeholder", "hours");
     const inputHours = document.createElement("input");
     inputHours.setAttribute("type", "number");
-    inputHours.setAttribute("name", "minutes");
-    inputHours.classList.add("minutes");
-    inputHours.setAttribute("placeholder", "minutes");
+    inputHours.setAttribute("name", "hours");
+    inputHours.classList.add("hours");
+    inputHours.setAttribute("placeholder", "hours");
+    const inputMins = document.createElement("input");
+    inputMins.setAttribute("type", "number");
+    inputMins.setAttribute("name", "minutes");
+    inputMins.classList.add("hours");
+    inputMins.setAttribute("placeholder", "minutes");
 
     const btnX = document.createElement("button")
     btnX.textContent="X";
@@ -138,6 +138,7 @@ function getInitialTime() {
         workableTime.end = Temporal.PlainTime.from(timeInput.end);
     } else {
         alert("No start or end time: tasks have been saved but schedule is not calculated.");
+        //TODO change to on page message instead of popup
     }
 
     console.log(workableTime);
