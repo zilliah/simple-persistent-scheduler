@@ -99,23 +99,26 @@ function readSavedSchedule() {
         let scheduleArray = scheduleString.split(",");
         return scheduleArray.map(str => {
             let arr = str.split(":");
-            return {[arr[0]]: arr[1]}
+            return {[arr[0]]: Temporal.Duration.from(arr[1])}  
         });
     } else return null;
 }
 //show saved schedule in editable input boxes
 //returns nothing
 function displaySavedSchedule(arr) {
+    console.log(arr)
     for (let i = 0; i < arr.length; i++) {
         if (i === 0) {
             let firstLiNodes = orderedListNode.firstChild.childNodes;
-            firstLiNodes[1].setAttribute("value", Object.keys(arr[i])[0]);
-            firstLiNodes[2].setAttribute("value", Object.values(arr[i])[0]);
+            firstLiNodes[1].setAttribute("value", Object.keys(arr[i])[0]); //name
+            firstLiNodes[2].setAttribute("value", Object.values(arr[i])[0].hours); //hours
+            firstLiNodes[3].setAttribute("value", Object.values(arr[i])[0].minutes); //mins
         } else {
             let li = newTaskRow();
             let inputEls = li.childNodes;
-            inputEls[1].setAttribute("value", Object.keys(arr[i])[0]);
-            inputEls[2].setAttribute("value", Object.values(arr[i])[0]);
+            inputEls[1].setAttribute("value", Object.keys(arr[i])[0]); //name
+            inputEls[2].setAttribute("value", Object.values(arr[i])[0].hours); //hours
+            inputEls[3].setAttribute("value", Object.values(arr[i])[0].minutes); //mins
             orderedListNode.append(li);
         }
     }
