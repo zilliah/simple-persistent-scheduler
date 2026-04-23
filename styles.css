@@ -56,6 +56,18 @@ ol {
     font-size: 1.1rem;
 }
 
+input[type="number"] {
+    width: 4rem;
+}
+
+li {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    /* TODO fine tune this a bit */
+    /* grid-template-columns: repeat(2, 1fr) 2fr 3fr repeat(2 1fr); */
+}
+
+
 .description {
     display: flex;
     justify-content: space-evenly;
