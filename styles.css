@@ -5,6 +5,8 @@ body {
     --lt-bright-contrast: rgb(182, 235, 218);
     --lt-dark-contrast: rgb(48, 48, 206);
     --lt-text: rgb(25, 25, 114);
+    --lt-inactive: rgb(211, 216, 215);
+    --lt-vibrant-contrast: hsl(from var(--lt-bright-contrast) h s 50 / alpha);
 
     background-color: var(--lt-background);
     color: var(--lt-text);
@@ -44,7 +46,7 @@ input, label {
 
 .time-input > input, ol input {
     padding: 0.5rem 1rem;
-    width: 6.7rem;
+    /* width: 6.7rem; */
     text-align: center;
 }
 
@@ -54,19 +56,26 @@ input, label {
 
 ol {
     font-size: 1.1rem;
+    margin: 0;
+    padding:0 1.5rem;
 }
-
+/* 
 input[type="number"] {
     width: 4rem;
-}
+} */
 
 li {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    /* TODO fine tune this a bit */
-    /* grid-template-columns: repeat(2, 1fr) 2fr 3fr repeat(2 1fr); */
+    margin-bottom: 0.7rem;
+    grid-template-columns: 2rem 4fr 1fr 1fr 3rem;
+    /* grid-template-columns: 10% 5% 1fr repeat(2, 10%) 5%; */   
 }
 
+li input[type="checkbox"] {
+    border-radius: 1rem;
+    accent-color: var(--lt-dark-contrast);
+    /* margin: 0 0.5rem; */
+}
 
 .description {
     display: flex;
@@ -101,7 +110,7 @@ button {
 
 button:hover {
     box-shadow: 0px 0px 18px -7px var(--lt-dark-contrast);
-    background-color: hsl(from var(--lt-bright-contrast) h s 50 / alpha);
+    background-color: var(--lt-vibrant-contrast);
 }
 
 button:active {
@@ -115,4 +124,27 @@ h1, h2 {
 
 h2 {
     font-size: 1.4rem;
+}
+
+button.delete-row, button.inactive {
+    font-size: 0.8rem;
+    line-height: 0.5rem;
+    align-self: center;
+    justify-self: center;
+}
+
+button.inactive, button.inactive:hover, button.inactive:active {
+    background-color: var(--lt-inactive);
+    box-shadow: none;
+    border-style: dotted;
+}
+
+.action-buttons {
+    flex-direction: column;
+}
+
+.action-buttons button {
+    margin:  0 1rem 1rem 1rem;
+    padding: 1rem;
+    /* width: 10rem; */
 }
