@@ -7,19 +7,9 @@ export function clearSchedule() {
 }
 
 export function clearTimes() {
-
-    //clears set start and end times from input
-    
-    //clears times saved to tasks
     let spanNodes = document.querySelectorAll("li>span");
     spanNodes.forEach(n => n.textContent = "0:00");
 
     let timeInputNodes = document.querySelectorAll("input[type='time']");
     timeInputNodes.forEach(n => n.value = 0);
-
-    //removes the spans
-    //or wait, should the spans be there from the start.....
-
-    //current error is happening bc adding a span changes the order of the <li> node list
-    //so yes ok i think it should be there from the start
 }

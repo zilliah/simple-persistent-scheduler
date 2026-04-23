@@ -7,6 +7,7 @@ body {
     --lt-text: rgb(25, 25, 114);
     --lt-inactive: rgb(211, 216, 215);
     --lt-vibrant-contrast: hsl(from var(--lt-bright-contrast) h s 50 / alpha);
+    --lt-error: hsla(335, 95%, 74%, 0.5);
 
     background-color: var(--lt-background);
     color: var(--lt-text);
@@ -155,4 +156,11 @@ button.inactive, button.inactive:hover, button.inactive:active {
     margin:  0 1rem 1rem 1rem;
     padding: 1rem;
     /* width: 10rem; */
+}
+
+
+.error-message {
+    background-color: var(--lt-error);
+    border-radius: 1rem;
+    font-size: 1rem;
 }

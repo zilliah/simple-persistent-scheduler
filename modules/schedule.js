@@ -36,7 +36,6 @@ export function removeRow(btn) {
 //note: first row is not deletable and does not have X btn intentionally 
 export function updateRemovalButtons() {
     const btns = document.querySelectorAll(".delete-row");
-    // console.log(btns);
     btns.forEach(node => {
          node.addEventListener("click", e => removeRow(node));
     });
@@ -57,7 +56,6 @@ export function showTimes(taskList) {
 //read schedule from input boxes. returns schedule array
 export function readPageSchedule(liNodeList) {
     const taskList = liNodeList.childNodes; //actual notes index from 1...why? innerText?
-    // console.log(taskList)//TODO error for empty list
     let readSchedule = [];
     for (let i = 0; i < taskList.length; i++) {
         let taskName = taskList[i].childNodes[2].value;

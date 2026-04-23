@@ -19,10 +19,8 @@ export function getInitialTime() {
 // tasks is array of Tasks
 // initTime is { start: Temporal.PlainTime, end: Temporal:PlainTime }
  export function calculateTaskTime(tasks, initTime) {
-    console.log("starting with:")
     let calcArray;
     if (initTime.start) {
-        console.log("start time found: adding to calculate");
         return tasks.map((t, i) => {
             i === 0? t.startTime = initTime.start : 
                      t.startTime = tasks[i-1].endTime;
