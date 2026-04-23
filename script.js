@@ -2,7 +2,7 @@ import { Task } from "./modules/task.js";
 import { newTaskRow, removeRow, updateRemovalButtons, showTimes, readPageSchedule, saveSchedule, readSavedSchedule, displaySavedSchedule } from "./modules/schedule.js";
 import { getInitialTime, calculateTaskTime } from "./modules/time.js"
 import { clearSchedule, clearTimes } from "./modules/clear.js"
-import { clearErrors, displayError } from "./modules/info.js";
+import { clearErrors, displayError } from "./modules/errors.js";
 
 const addBtn = document.querySelector(".add-new-row");
 const orderedListNode = document.querySelector("ol");
@@ -22,7 +22,7 @@ calculateBtn.addEventListener("click", e => {
     saveSchedule(schedule);
 
     if (!initTime) {
-        alert("No start or end time: tasks have been saved but schedule is not calculated.");
+        displayError("No start or end time: tasks have been saved but schedule is not calculated.");
         //TODO change this to an on page message instead of an alert
         return null;
     }
@@ -47,5 +47,6 @@ clearTimeBtn.addEventListener("click", e => clearTimes());
 //clear schedule
 const clearAllBtn = document.querySelector("#clear-all");
 clearAllBtn.addEventListener("click", e => clearSchedule());
+
 
 // TODO check if browser supports Temporal, show error if not
