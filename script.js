@@ -20,7 +20,18 @@ calculateBtn.addEventListener("click", e => {
     
     schedule = readPageSchedule(orderedListNode);
     saveSchedule(schedule);
-    calculateTaskTime(schedule, initTime)
+
+
+    if (!initTime) {
+        alert("No start or end time: tasks have been saved but schedule is not calculated.");
+        //TODO change this to an on page message instead of an alert
+        return null;
+    }
+
+
+
+    calculateTaskTime(schedule, initTime);
+    console.log(schedule);
 });
 
 
