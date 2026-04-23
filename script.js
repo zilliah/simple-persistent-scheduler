@@ -1,7 +1,7 @@
 import { Task } from "./modules/task.js";
-import { newTaskRow, removeRow, updateRemovalButtons, readPageSchedule, saveSchedule, readSavedSchedule, displaySavedSchedule } from "./modules/schedule.js";
+import { newTaskRow, removeRow, updateRemovalButtons, showTimes, readPageSchedule, saveSchedule, readSavedSchedule, displaySavedSchedule } from "./modules/schedule.js";
 import { getInitialTime, calculateTaskTime } from "./modules/time.js"
-import { clearSchedule } from "./modules/clear.js"
+import { clearSchedule, clearTimes } from "./modules/clear.js"
 
 
 const addBtn = document.querySelector(".add-new-row");
@@ -28,10 +28,10 @@ calculateBtn.addEventListener("click", e => {
         return null;
     }
 
-
-
     calculateTaskTime(schedule, initTime);
     console.log(schedule);
+
+    showTimes(schedule);
 });
 
 
@@ -51,9 +51,8 @@ addBtn.addEventListener("click", e => {
 
 // ---------- CLEAR DATA/ETC --------------
 // clear start/end time
-const timeBtns = document.querySelectorAll(".clear-time");
-// console.log(timeBtns);
-timeBtns.forEach(btn => btn.addEventListener("click", e => btn.previousElementSibling.value = ""));
+const clearTimeBtn = document.querySelector("#clear-time");
+clearTimeBtn.addEventListener("click", e => clearTimes());
 
 //clear schedule
 const clearAllBtn = document.querySelector("#clear-all");

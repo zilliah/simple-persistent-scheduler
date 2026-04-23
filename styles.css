@@ -29,22 +29,28 @@ input, label {
 }
 
 .time-input {
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 3rem);
     column-gap: 0.5rem;
     row-gap: 0.5rem;
     justify-content: space-evenly;
-    align-items: start;
+    align-items: start; */
+    display: flex;
+    flex-direction: column;
+}
+
+.time-input > div {
+    display: flex;
+    justify-content: space-between;
 }
 
 
-.time-input > label {
-    justify-self: end;
-    align-self: center;
+.time-input input {
+    width: 10rem;
 }
 
-.time-input > input, ol input {
+.time-input input, ol input {
     padding: 0.5rem 1rem;
     /* width: 6.7rem; */
     text-align: center;
@@ -54,21 +60,23 @@ input, label {
     margin: 0 1rem;
 }
 
+.clear-time {
+    /* display: block; */
+}
+
 ol {
     font-size: 1.1rem;
     margin: 0;
     padding:0 1.5rem;
 }
-/* 
+
 input[type="number"] {
     width: 4rem;
-} */
+}
 
 li {
-    display: grid;
+    display: flex;
     margin-bottom: 0.7rem;
-    grid-template-columns: 2rem 4fr 1fr 1fr 3rem;
-    /* grid-template-columns: 10% 5% 1fr repeat(2, 10%) 5%; */   
 }
 
 li input[type="checkbox"] {

@@ -16,11 +16,18 @@
         </header>
         <div class="interactive flex">
             <div class="time-input">
-                <label for="start-time">Start time:</label><input type="time" name="start-time" id="start-time"><button class="clear-time">Clear</button>
-                <label for="end-time">End time:</label><input type="time" name="end-time" id="end-time"><button class="clear-time">Clear</button>
+                <div>
+                    <label for="start-time">Start time:</label>
+                    <input type="time" name="start-time" id="start-time">
+                </div>
+                <div>
+                    <label for="end-time">End time:</label>
+                    <input type="time" name="end-time" id="end-time">
+                </div>
+                <button id="clear-time">Clear Time</button>
             </div>
         
-            <ol><li><input type="checkbox"><input type="text" placeholder="task"><input type="number" name="hours" class="hours" placeholder="hours"><input type="number" name="minutes" class="minutes" placeholder="Minutes"><button class="inactive">X</button></li></ol>
+            <ol><li><span class="task-start-time">0:00</span><input type="checkbox"><input type="text" placeholder="task"><input type="number" name="hours" class="hours" placeholder="hours"><input type="number" name="minutes" class="minutes" placeholder="Minutes"><button class="inactive">X</button></li></ol>
 
             <div class="action-buttons flex">
                 <button class="add-new-row">Add Task</button>

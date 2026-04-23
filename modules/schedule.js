@@ -4,6 +4,9 @@ import { Task } from "./task.js";
 export function newTaskRow() {
     const li = document.createElement("li");
 
+    const span = document.createElement("span");
+    span.textContent = "0:00"
+    span.classList.add("task-start-time");
     const checkbox = document.createElement("input");
     checkbox.setAttribute("type", "checkbox");
     const inputText = document.createElement("input");
@@ -24,7 +27,7 @@ export function newTaskRow() {
     btnX.textContent="X";
     btnX.classList.add("delete-row");
 
-    li.append(checkbox, inputText, inputHours, inputMins, btnX);
+    li.append(span, checkbox, inputText, inputHours, inputMins, btnX);
     return li;
 }
 export function removeRow(btn) {
@@ -40,6 +43,14 @@ export function updateRemovalButtons() {
 
 }
 
+export function showTimes(taskList) {
+    const liNodes = document.querySelectorAll("li");
+    taskList.forEach((t,i) => {
+        let currNode = liNodes[i];
+        let fullTime = t.startTime.toString();
+        currNode.querySelector("span").textContent = fullTime.slice(0,fullTime.lastIndexOf(":"));
+    });
+}
 
 // -------- TASK/SCHEDULE READ & SAVE FUNCTIONS --------------------
 
@@ -49,10 +60,10 @@ export function readPageSchedule(liNodeList) {
     // console.log(taskList)//TODO error for empty list
     let readSchedule = [];
     for (let i = 0; i < taskList.length; i++) {
-        let taskName = taskList[i].childNodes[1].value;
+        let taskName = taskList[i].childNodes[2].value;
         //TODO add number validation + throw error if not a number + say where
-        let taskHours = taskList[i].childNodes[2].value;
-        let taskMinutes = taskList[i].childNodes[3].value;
+        let taskHours = taskList[i].childNodes[3].value;
+        let taskMinutes = taskList[i].childNodes[4].value;
         let currTask = new Task(taskName, Temporal.Duration.from({ hours: Number(taskHours), minutes: Number(taskMinutes)}))
         readSchedule.push(currTask); 
     };
@@ -85,15 +96,15 @@ export function displaySavedSchedule(arr, orderedListNode) {
     for (let i = 0; i < arr.length; i++) {
         if (i === 0) {
             let firstLiNodes = orderedListNode.firstChild.childNodes;
-            firstLiNodes[1].setAttribute("value", arr[i].name);
-            firstLiNodes[2].setAttribute("value", arr[i].duration.hours);
-            firstLiNodes[3].setAttribute("value", arr[i].duration.minutes);
+            firstLiNodes[2].setAttribute("value", arr[i].name);
+            firstLiNodes[3].setAttribute("value", arr[i].duration.hours);
+            firstLiNodes[4].setAttribute("value", arr[i].duration.minutes);
         } else {
             let li = newTaskRow();
             let inputEls = li.childNodes;
-            inputEls[1].setAttribute("value", arr[i].name);
-            inputEls[2].setAttribute("value", arr[i].duration.hours);
-            inputEls[3].setAttribute("value", arr[i].duration.minutes);
+            inputEls[2].setAttribute("value", arr[i].name);
+            inputEls[3].setAttribute("value", arr[i].duration.hours);
+            inputEls[4].setAttribute("value", arr[i].duration.minutes);
             orderedListNode.append(li);
         }
     }
