@@ -164,3 +164,7 @@ button.inactive, button.inactive:hover, button.inactive:active {
     border-radius: 1rem;
     font-size: 1rem;
 }
+
+.input-error {
+    background-color: var(--lt-error);
+}

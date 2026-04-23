@@ -30,12 +30,13 @@
                 </div>
             </div>
         
-            <ol><li><span class="task-start-time">0:00</span><input type="checkbox"><input type="text" placeholder="task"><input type="number" name="hours" class="hours" placeholder="hours"><input type="number" name="minutes" class="minutes" placeholder="Minutes"><button class="inactive">X</button></li></ol>
+            <ol><li><span class="task-start-time">0:00</span><input type="checkbox"><input type="text" placeholder="task"><input type="number" name="hours" class="hours" placeholder="hours" min="0" max="3600"><input type="number" name="minutes" class="minutes" placeholder="Minutes" min="0" max="3600"><button class="inactive">X</button></li></ol>
 
             <div class="action-buttons flex">
                 <button class="add-new-row">Add Task</button>
                 <button id="calculate">Calculate & Save</button>
                 <button id="clear-all">Clear Everything</button>
+                <button id="test" class="input-error">TMP TESTING</button>
             </div>
         </div>
 
@@ -63,7 +64,5 @@
     </main>
 
     <script src="script.js" type="module"></script>
-    <script src="modules/schedule.js" type="module"></script>
-    <script src="modules/task.js" type="module"></script>
 </body>
 </html>

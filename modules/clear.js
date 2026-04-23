@@ -13,3 +13,15 @@ export function clearTimes() {
     let timeInputNodes = document.querySelectorAll("input[type='time']");
     timeInputNodes.forEach(n => n.value = 0);
 }
+
+//needed for clear everything in chrome/etc
+//idk it kind of seems to be working already???
+// leave this unless testing show it's a problem
+// export function clearTaskInput(ol) {
+//     const liList = ol.childNodes;
+//     liList.forEach(li => {
+//         li.querySelectorAll("input").forEach(i =>{
+//             i.value = "";
+//             });
+//     })
+// }

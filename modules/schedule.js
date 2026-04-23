@@ -1,4 +1,5 @@
 import { Task } from "./task.js";
+import { displayError, validateDurationInput } from "./errors.js";
 
 // ---- PAGE DISPLAY UPDATES --------
 export function newTaskRow() {
@@ -15,12 +16,16 @@ export function newTaskRow() {
     const inputHours = document.createElement("input");
     inputHours.setAttribute("type", "number");
     inputHours.setAttribute("name", "hours");
+    inputHours.setAttribute("min", "0");
+    inputHours.setAttribute("max", "3600");
     inputHours.classList.add("hours");
     inputHours.setAttribute("placeholder", "hours");
     const inputMins = document.createElement("input");
     inputMins.setAttribute("type", "number");
     inputMins.setAttribute("name", "minutes");
-    inputMins.classList.add("hours");
+    inputMins.setAttribute("min", "0");
+    inputMins.setAttribute("max", "3600");
+    inputMins.classList.add("minutes");
     inputMins.setAttribute("placeholder", "minutes");
 
     const btnX = document.createElement("button")
@@ -28,6 +33,11 @@ export function newTaskRow() {
     btnX.classList.add("delete-row");
 
     li.append(span, checkbox, inputText, inputHours, inputMins, btnX);
+
+    // input validation
+    inputHours.addEventListener("input", e => validateDurationInput(inputHours));
+    inputMins.addEventListener("input", e => validateDurationInput(inputMins));
+
     return li;
 }
 export function removeRow(btn) {
@@ -58,11 +68,18 @@ export function readPageSchedule(liNodeList) {
     const taskList = liNodeList.childNodes; //actual notes index from 1...why? innerText?
     let readSchedule = [];
     for (let i = 0; i < taskList.length; i++) {
-        let taskName = taskList[i].childNodes[2].value;
-        //TODO add number validation + throw error if not a number + say where
-        let taskHours = taskList[i].childNodes[3].value;
-        let taskMinutes = taskList[i].childNodes[4].value;
-        let currTask = new Task(taskName, Temporal.Duration.from({ hours: Number(taskHours), minutes: Number(taskMinutes)}))
+        let taskName = taskList[i].childNodes[2].value.toString();
+        
+        //get input values
+        //round & get absolute values to account for bad input
+        let taskHours = Math.abs(Math.round(Number(taskList[i].childNodes[3].value)));
+        let taskMinutes = Math.abs(Math.round(Number(taskList[i].childNodes[4].value)));
+
+        //max allowed values are 3600 for both hours and min, if values exceed these, just replace
+        if (taskHours > 3600) taskHours = 3600;
+        if (taskMinutes > 3600) taskMinutes = 3600;
+
+        let currTask = new Task(taskName, Temporal.Duration.from({ hours: taskHours, minutes: taskMinutes}));
         readSchedule.push(currTask); 
     };
     return readSchedule;
@@ -107,3 +124,4 @@ export function displaySavedSchedule(arr, orderedListNode) {
         }
     }
 }
+
