@@ -13,117 +13,15 @@ body {
     color: var(--lt-text);
 }
 
+/*  General styling  */
+
 main {
     height: 90vh;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-
-.interactive > div {
-    width: 28vw;
-}
-
-input, label {
     font-size: 1rem;
-}
-
-.time-input {
-    /* display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 3rem);
-    column-gap: 0.5rem;
-    row-gap: 0.5rem;
-    justify-content: space-evenly;
-    align-items: start; */
-    display: flex;
-    flex-direction: column;
-}
-
-.time-input > div {
-    display: flex;
-    justify-content: space-between;
-}
-
-
-.time-input input {
-    width: 10rem;
-}
-
-.time-input input, ol input {
-    padding: 0.5rem 1rem;
-    /* width: 6.7rem; */
-    text-align: center;
-}
-
-.time-input button {
-    margin: 0 1rem;
-}
-
-.clear-time {
-    /* display: block; */
-}
-
-ol {
-    font-size: 1.1rem;
-    margin: 0;
-    padding:0 1.5rem;
-}
-
-input[type="number"] {
-    width: 4rem;
-}
-
-li {
-    display: flex;
-    margin-bottom: 0.7rem;
-}
-
-li input[type="checkbox"] {
-    border-radius: 1rem;
-    accent-color: var(--lt-dark-contrast);
-    /* margin: 0 0.5rem; */
-}
-
-.description {
-    display: flex;
-    justify-content: space-evenly;
-
-    
-    font-size: 01rem;
-    line-height: 1.4rem;;
-}
-
-.description div {
-    width: 18rem;
-    padding: 2vh 2vw;
-    margin:  1rem;
-    background-color: hsl(from var(--lt-bright-contrast) h s l / 30%);
-    border-radius: 1rem;
-}
-
-.flex {
-    display: flex;
-}
-
-
-button {
-    margin: 0 1rem;
-    padding: 0.5rem;
-    background-color: var(--lt-bright-contrast);
-    border-color: var(--lt-dark-contrast);
-    border-radius: 1rem;
-    font-size: 1rem;
-}
-
-button:hover {
-    box-shadow: 0px 0px 18px -7px var(--lt-dark-contrast);
-    background-color: var(--lt-vibrant-contrast);
-}
-
-button:active {
-    box-shadow: 0px 0px 18px -7px var(--lt-dark-contrast) inset;
 }
 
 h1, h2 {
@@ -135,29 +33,143 @@ h2 {
     font-size: 1.4rem;
 }
 
-button.delete-row, button.inactive {
-    font-size: 0.8rem;
-    line-height: 0.5rem;
-    align-self: center;
-    justify-self: center;
+ol {
+    font-size: 1.1rem;
+    margin: 0;
+    padding:0 1.5rem;
 }
 
-button.inactive, button.inactive:hover, button.inactive:active {
-    background-color: var(--lt-inactive);
-    box-shadow: none;
-    border-style: dotted;
+li {
+    /* display: flex; */  
+    /* TODO do i even need to use flex here? might be overkills, plus it hides the list numbers */
+    margin-bottom: 0.7rem;
 }
 
-.action-buttons {
+input { 
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+
+    &[type="number"] {
+        width: 4rem;
+    }
+
+
+    &[type="checkbox"] {
+        accent-color: var(--lt-dark-contrast);
+        /* border-radius: 1rem; */
+        /* margin: 0 0.5rem; */
+    }
+}
+
+button {
+    margin: 0 1rem;
+    padding: 0.5rem;
+    background-color: var(--lt-bright-contrast);
+    border-color: var(--lt-dark-contrast);
+    border-radius: 1rem;
+    font-size: 1rem;
+
+    &:hover {
+        box-shadow: 0px 0px 18px -7px var(--lt-dark-contrast);
+        background-color: var(--lt-vibrant-contrast);
+    }
+
+    &:active {
+        box-shadow: 0px 0px 18px -7px var(--lt-dark-contrast) inset;
+    }
+
+    &.inactive {
+        background-color: var(--lt-inactive);
+        box-shadow: none;
+        border-style: dotted;
+    }
+
+    &.inactive, &.delete-row {
+        font-size: 0.8rem;
+        line-height: 0.5rem;
+        align-self: center;
+        justify-self: center;
+    }
+
+}
+
+/* General class styles */
+
+.flex {
+    display: flex;
+}
+
+.grid {
+    display: grid;
+}
+
+/* ------ Input .interactive grid layout */
+.interactive {
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 4rem;
+    
+    padding: 4rem;
+}
+
+/* .time-input layout  */
+
+.time-input {
+    display: flex;
     flex-direction: column;
+
+    & > div {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    & input {
+        width: 10rem;
+    }
+
+    & button {
+        /* margin: 0 1rem; */
+    }
 }
 
-.action-buttons button {
-    margin:  0 1rem 1rem 1rem;
-    padding: 1rem;
-    /* width: 10rem; */
+
+
+/* .schedule-input layout */
+.schedule-input {
+    grid-column: 2 / 5 ;
 }
 
+/*  .action-buttons layout */
+.action-buttons {
+    grid-column-start: 5;
+    flex-direction: column;
+
+    & button {
+        margin:  0 1rem 1rem 1rem;
+        padding: 1rem;
+        width: 10rem;
+    }
+}
+
+
+/* .description layout */
+
+.description {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 01rem;
+    line-height: 1.4rem;
+
+    & div {
+        width: 18rem;
+        padding : 2vh 2vw;
+        margin:  1rem;
+        background-color: hsl(from var(--lt-bright-contrast) h s l / 30%);
+        border-radius: 1rem;    
+    }
+}
+
+
+/* Error/alert styling */
 
 .error-message {
     background-color: var(--lt-error);
