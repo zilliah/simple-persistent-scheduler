@@ -61,4 +61,4 @@ clearAllBtn.addEventListener("click", e => clearSchedule());
 
 
 //  TMP TESTING CURR
-document.querySelector("#test").addEventListener("click", e => verifyCorrectScheduleInput(schedule, orderedListNode));
+// document.querySelector("#test").addEventListener("click", e => verifyCorrectScheduleInput(schedule, orderedListNode));

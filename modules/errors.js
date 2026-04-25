@@ -13,5 +13,4 @@ export function clearErrors() {
 export function validateDurationInput(node) {
     if (!node.checkValidity()) node.classList.add("input-error");
     else node.classList.remove("input-error");
-    console.log("validity checked");
 }
