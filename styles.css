@@ -41,13 +41,17 @@ main {
     font-size: 1rem;
 }
 
-h1, h2 {
+h1, h2, h3 {
     font-size: 2rem;
     text-align: center;
 }
 
 h2 {
     font-size: 1.4rem;
+}
+
+h3 {
+    font-size: 1rem;
 }
 
 a {
@@ -60,16 +64,11 @@ ol {
     padding:0 1.5rem;
 }
 
-li {
-    /* display: flex; */  
-    /* TODO do i even need to use flex here? might be overkills, plus it hides the list numbers */
-    margin-bottom: 0.7rem;
-}
 
 input { 
     padding: 0.5rem 1rem;
     font-size: 1rem;
-    border-radius: 1rem;
+    /* border-radius: 1rem;  TMP TODO - just square to help see alignment issues*/ 
     border-color: var(--dark-contrast);
     background-color: var(--input-background);
     color: var(--text);
@@ -273,7 +272,6 @@ button {
 
         & li {
             width: 100%;
-            display: grid;
             grid-template-columns:20vw repeat(2, 40vw) 20vw;
             grid-template-rows: repeat(2, auto);
             row-gap: 0.2rem;

@@ -4,6 +4,7 @@ import { displayError, validateDurationInput } from "./errors.js";
 // ---- PAGE DISPLAY UPDATES --------
 export function newTaskRow() {
     const li = document.createElement("li");
+    li.classList.add("grid");
 
     const spanStart = document.createElement("span");
     spanStart.textContent = "";
@@ -76,12 +77,14 @@ export function readPageSchedule(liNodeList) {
         
         //get input values
         //round & get absolute values to account for bad input
-        let taskHours = Math.abs(Math.round(Number(taskList[i].childNodes[3].value)));
-        let taskMinutes = Math.abs(Math.round(Number(taskList[i].childNodes[4].value)));
+        let taskHours = Math.round(Number(taskList[i].childNodes[3].value));
+        let taskMinutes = Math.round(Number(taskList[i].childNodes[4].value));
 
-        //max allowed values are 3600 for both hours and min, if values exceed these, just replace
+        //replace numbers outside of allowed range
         if (taskHours > 3600) taskHours = 3600;
+        if (taskHours < 0) taskHours = 0;
         if (taskMinutes > 3600) taskMinutes = 3600;
+        if (taskMinutes < 0) taskMinutes = 0;
 
         let currTask = new Task(taskName, Temporal.Duration.from({ hours: taskHours, minutes: taskMinutes}));
         readSchedule.push(currTask); 
