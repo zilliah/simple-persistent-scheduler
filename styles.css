@@ -18,7 +18,7 @@
     --bright-contrast: hsl(175, 50%, 55%);
     --dark-contrast: hsl(278, 78%, 23%);
     --text: hsl(175, 0%, 95%);
-    --inactive: hsl(180, 1%, 74%);
+    --inactive: hsl(180, 4%, 56%);
     --vibrant-contrast: hsl(from var(--bright-contrast) h s 40 / alpha);
     --error: hsla(335, 95%, 74%, 0.40);
     --input-background: hsl(from var(--background) h 30 40 / alpha);
@@ -278,6 +278,7 @@ button {
             align-items: center;
 
             margin-bottom: 1rem;
+
 
             /* task name */
             & input[type="text"] {
