@@ -1,5 +1,5 @@
 import { Task } from "./task.js";
-import { displayError, validateDurationInput } from "./errors.js";
+import { displayError, validateDurationInput, validateTaskNameInput } from "./errors.js";
 
 // ---- PAGE DISPLAY UPDATES --------
 export function newTaskRow() {
@@ -14,6 +14,7 @@ export function newTaskRow() {
     const inputText = document.createElement("input");
     inputText.setAttribute("type", "text");
     inputText.setAttribute("placeholder", "task");
+    inputText.setAttribute("maxlength", 200);
     const inputHours = document.createElement("input");
     inputHours.setAttribute("type", "number");
     inputHours.setAttribute("name", "hours");
@@ -37,11 +38,11 @@ export function newTaskRow() {
     btnX.classList.add("delete-row");
 
     // input validation
+    inputText.addEventListener("input", e => validateTaskNameInput(inputText));
     inputHours.addEventListener("input", e => validateDurationInput(inputHours));
     inputMins.addEventListener("input", e => validateDurationInput(inputMins));
 
     li.append(spanStart, checkbox, inputText, inputHours, inputMins, spanEnd, btnX);
-
 
     return li;
 }
@@ -73,14 +74,11 @@ export function readPageSchedule(liNodeList) {
     const taskList = liNodeList.childNodes; //actual notes index from 1...why? innerText?
     let readSchedule = [];
     for (let i = 0; i < taskList.length; i++) {
-        let taskName = taskList[i].childNodes[2].value.toString();
+        // handle bad input
+        let taskName = taskList[i].childNodes[2].value.toString().slice(0, 200);
         
-        //get input values
-        //round & get absolute values to account for bad input
         let taskHours = Math.round(Number(taskList[i].childNodes[3].value));
         let taskMinutes = Math.round(Number(taskList[i].childNodes[4].value));
-
-        //replace numbers outside of allowed range
         if (taskHours > 3600) taskHours = 3600;
         if (taskHours < 0) taskHours = 0;
         if (taskMinutes > 3600) taskMinutes = 3600;

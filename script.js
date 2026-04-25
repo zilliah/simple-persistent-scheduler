@@ -2,7 +2,7 @@ import { Task } from "./modules/task.js";
 import { newTaskRow, removeRow, updateRemovalButtons, showTimes, readPageSchedule, saveSchedule, readSavedSchedule, displaySavedSchedule } from "./modules/schedule.js";
 import { getInitialTime, calculateTaskTime } from "./modules/time.js"
 import { clearSchedule, clearTimes } from "./modules/clear.js"
-import { clearErrors, displayError, validateDurationInput} from "./modules/errors.js";
+import { clearErrors, displayError, validateDurationInput, validateTaskNameInput} from "./modules/errors.js";
 
 const addBtn = document.querySelector(".add-new-row");
 const orderedListNode = document.querySelector("ol");
@@ -13,10 +13,18 @@ let schedule = []; //array of Tasks
 const saved = localStorage.getItem("saved-schedule");
 if (saved) displaySavedSchedule(readSavedSchedule(saved), orderedListNode);
 
-// validate duration input
+// validate inputs
+// TODO error: these are doubled for added tasks and I'm not sure how to handle it
+// needs to be called here to add listeners for the saved tasks (otherwise they won't get error handling)
+// but also needs to be called when creating a new task row (newTaskRow()) bc otherwise new tasks won't have listeners
+// it's working fine for newly added tasks and the starter task 
+// but for saved tasks it's called twice!
+// and idk why, event listeners shouldn't last page page refresh
+// it's not a huge problem, it can get called twice I guess, but whyyyyyyyy is it happening
+const nameInputNodes = document.querySelectorAll("input[type='text']");
+nameInputNodes.forEach(n => n.addEventListener("input", e => validateTaskNameInput(n)));
 const numberInputNodes = document.querySelectorAll("input[type='number']");
 numberInputNodes.forEach(n => n.addEventListener("input", e => validateDurationInput(n)));
-////// TODO need to add an event listener to new rows (do in the add new row method)
 
 // ------ CALCULATE ---- calculate schedule + save to local storage
 const calculateBtn = document.querySelector("#calculate");
