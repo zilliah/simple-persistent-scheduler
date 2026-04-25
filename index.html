@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Persistent Scheduler</title>
+    <title>Rifter: the Routine Shifter</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📅</text></svg>">
 </head>
@@ -11,11 +11,11 @@
     
     <main>
         <header>
-            <h1>Rhifter: the Routine Shifter</h1>
+            <h1>Rifter: the Routine Shifter</h1>
             <h2>When you have consistent routines at inconsistent times</h2>
         </header>
         <div class="interactive grid">
-            <div class="time-input">
+            <div class="time-input flex">
                 <div>
                     <label for="start-time">Start time:</label>
                     <input type="time" name="start-time" id="start-time">
@@ -31,7 +31,7 @@
             </div>
         
             <div class="schedule-input">
-                <ol><li><span class="task-start-time">0:00</span><input type="checkbox"><input type="text" placeholder="task"><input type="number" name="hours" class="hours" placeholder="hours" min="0" max="3600"><input type="number" name="minutes" class="minutes" placeholder="Minutes" min="0" max="3600"><button class="inactive">X</button></li></ol>
+                <ol><li><span class="task-start-time">0:00</span><input type="checkbox"><input type="text" name="task-name" placeholder="task"><input type="number" name="hours" class="hours" placeholder="hours" min="0" max="3600"><input type="number" name="minutes" class="minutes" placeholder="Minutes" min="0" max="3600"><button class="inactive">X</button></li></ol>
                 <button class="add-new-row">Add Task</button>
             </div>
 

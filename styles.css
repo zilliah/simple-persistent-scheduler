@@ -28,7 +28,6 @@
 /*  General element styling  */
 body {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 62.5%;
     background-color: var(--background);
     color: var(--text);
     transition: var(--background-color 0.3s ease);
@@ -71,6 +70,8 @@ li {
 input { 
     padding: 0.5rem 1rem;
     font-size: 1rem;
+    border-radius: 1rem;
+    border-color: var(--dark-contrast);
     background-color: var(--input-background);
     color: var(--text);
 
@@ -134,23 +135,23 @@ button {
 .interactive {
     grid-template-columns: repeat(5, 1fr);
     column-gap: 4rem;
-    
     padding: 4rem;
 }
 
 /* .time-input layout  */
 
 .time-input {
-    display: flex;
     flex-direction: column;
 
     & > div {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+
     }
 
     & input {
-        width: 10rem;
+        width: 8rem;
     }
 
     & button {
@@ -198,9 +199,147 @@ button {
     background-color: var(--error);
     border-radius: 1rem;
     font-size: 1rem;
+
+    & p {
+            margin: 1rem;
+
+    }
 }
 
 .input-error {
     background-color: var(--error);
 }
 
+/* layout media queries */
+
+
+/* smallest layout break */
+@media (width <= 500px) {
+    body, main {
+        margin: 0;
+        align-items: center;
+    }
+    
+    button {
+        width: 10rem;
+
+        &.inactive, &.delete-row {
+            width: auto;
+        }
+    }
+
+    .interactive {
+        grid-template-columns: 80vw;
+        grid-template-rows: repeat(3, auto) ;
+        
+        width:80vw;
+        padding: 0;
+    }
+
+    .time-input {
+        grid-column-start: 1;
+        grid-row-start: 1;
+        align-items: center;
+        
+        & > div {
+            width: 100%;
+            justify-content: center;
+            margin-top: 0.2rem;
+        }
+
+        & label {
+            width: 25vw;
+        }
+
+        & input {
+            margin-left: 1rem;
+        }
+
+        & button {
+            margin: 1rem 0;
+        }
+
+    }
+
+    .schedule-input {
+        grid-column-start: 1;
+        grid-row-start: 3;
+        width: 82vw;
+
+        & ol {
+            padding: 0;
+        }
+
+        & li {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr) repeat(2, 2fr);
+            grid-template-rows: repeat(2, auto);
+            row-gap: 0.2rem;
+            align-items: center;
+
+            margin-bottom: 1rem;
+
+            /* task name */
+            & input[type="text"] {
+                grid-column: 1 / -1;
+                grid-row-start: 1;
+            }
+
+            & button {
+                grid-column-end: 5;
+                grid-row-start: 1;
+                margin: 0;
+            }
+
+            & span, & .hours, & .minutes, & input[type="checkbox"] {
+                grid-row-start: 2;
+                width: auto;
+            }
+
+            & span {
+                padding-left: 1rem;
+            }
+
+            input[type="checkbox"] {
+                height: 1.4rem;
+            }
+        }
+
+        & button.add-new-row {
+            margin: auto;
+            display: block;
+        }
+    }
+
+    .action-buttons {
+        grid-column-start: 1;
+        grid-row-start: 2;
+        margin: 2rem auto;
+    }
+
+    .description {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1rem;
+        padding-bottom: 0.5rem;
+
+        & > div {
+            width: 80vw;
+            margin: 0.5rem 0;
+            padding: 0 1rem;
+        }
+    }
+}
+
+
+/*  fine-tuning media queries in between layout breaks  */
+
+
+/* this is hacky and should be fixed 
+    issue: input grid is too far to the right
+    and I can't figure out what's pushing it over  */
+@media (width <= 344px) {
+    .interactive {
+        margin-left: -1.5rem;
+    }
+}
