@@ -5,9 +5,9 @@ import { displayError, validateDurationInput } from "./errors.js";
 export function newTaskRow() {
     const li = document.createElement("li");
 
-    const span = document.createElement("span");
-    span.textContent = "0:00"
-    span.classList.add("task-start-time");
+    const spanStart = document.createElement("span");
+    spanStart.textContent = "";
+    spanStart.classList.add("task-start-time");
     const checkbox = document.createElement("input");
     checkbox.setAttribute("type", "checkbox");
     const inputText = document.createElement("input");
@@ -27,16 +27,20 @@ export function newTaskRow() {
     inputMins.setAttribute("max", "3600");
     inputMins.classList.add("minutes");
     inputMins.setAttribute("placeholder", "minutes");
+    const spanEnd = document.createElement("span");
+    spanEnd.textContent = "";
+    spanEnd.classList.add("task-end-time");
 
     const btnX = document.createElement("button")
     btnX.textContent="X";
     btnX.classList.add("delete-row");
 
-    li.append(span, checkbox, inputText, inputHours, inputMins, btnX);
-
     // input validation
     inputHours.addEventListener("input", e => validateDurationInput(inputHours));
     inputMins.addEventListener("input", e => validateDurationInput(inputMins));
+
+    li.append(spanStart, checkbox, inputText, inputHours, inputMins, spanEnd, btnX);
+
 
     return li;
 }

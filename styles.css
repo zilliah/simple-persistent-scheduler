@@ -34,7 +34,6 @@ body {
 }
 
 main {
-    height: 90vh;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -81,6 +80,7 @@ input {
 
 
     &[type="checkbox"] {
+        display: none;
         accent-color: var(--dark-contrast);
         /* border-radius: 1rem; */
         /* margin: 0 0.5rem; */
@@ -95,6 +95,7 @@ button {
     border-color: var(--dark-contrast);
     border-radius: 1rem;
     font-size: 1rem;
+    text-align: center;
 
     &:hover {
         box-shadow: 0px 0px 18px -7px var(--dark-contrast);
@@ -112,11 +113,12 @@ button {
     }
 
     &.inactive, &.delete-row {
+        align-self: center;
+        justify-self: center;
+        margin-right: 0.5rem;
         padding: 0.5rem;
         font-size: 0.8rem;
         line-height: 0.5rem;
-        align-self: center;
-        justify-self: center;
     }
 
 }
@@ -229,11 +231,10 @@ button {
     }
 
     .interactive {
-        grid-template-columns: 80vw;
         grid-template-rows: repeat(3, auto) ;
         
         width:80vw;
-        padding: 0;
+        padding: 1rem 0;
     }
 
     .time-input {
@@ -264,18 +265,20 @@ button {
     .schedule-input {
         grid-column-start: 1;
         grid-row-start: 3;
-        width: 82vw;
+        /* width: 82vw; */
 
         & ol {
             padding: 0;
         }
 
         & li {
+            width: 100%;
             display: grid;
-            grid-template-columns: repeat(2, 1fr) repeat(2, 2fr);
+            grid-template-columns:20vw repeat(2, 40vw) 20vw;
             grid-template-rows: repeat(2, auto);
             row-gap: 0.2rem;
             align-items: center;
+            justify-content: space-between;
 
             margin-bottom: 1rem;
 
@@ -289,7 +292,7 @@ button {
             & button {
                 grid-column-end: 5;
                 grid-row-start: 1;
-                margin: 0;
+                /* margin: 0; */
             }
 
             & span, & .hours, & .minutes, & input[type="checkbox"] {
@@ -341,6 +344,6 @@ button {
     and I can't figure out what's pushing it over  */
 @media (width <= 344px) {
     .interactive {
-        margin-left: -1.5rem;
+        /* margin-left: -1.5rem; */
     }
 }
