@@ -1,19 +1,38 @@
+/* colours */
+:root {
+    /* light mode colours */
+    --background: rgb(255, 251, 190);
+    /* --background: hsl(246, 41%, 90%); */
+    --bright-contrast: hsl(161, 57%, 82%);
+    --dark-contrast: hsl(240, 62%, 50%);
+    --text: hsl(240, 64%, 27%);
+    --inactive: hsl(168, 6%, 84%);
+    --vibrant-contrast: hsl(from var(--bright-contrast) h s 50 / alpha);
+    --error: hsla(335, 95%, 74%, 0.5);
+    --input-background: hsl(0, 0%, 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+    --background: hsl(240, 20%, 27%);
+    --bright-contrast: hsl(175, 50%, 55%);
+    --dark-contrast: hsl(278, 78%, 23%);
+    --text: hsl(175, 0%, 95%);
+    --inactive: hsl(180, 1%, 74%);
+    --vibrant-contrast: hsl(from var(--bright-contrast) h s 40 / alpha);
+    --error: hsla(335, 95%, 74%, 0.40);
+    --input-background: hsl(from var(--background) h 30 40 / alpha);
+    }
+}
+
+/*  General element styling  */
 body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 62.5%;
-    --lt-background: rgb(255, 251, 190);
-    --lt-bright-contrast: rgb(182, 235, 218);
-    --lt-dark-contrast: rgb(48, 48, 206);
-    --lt-text: rgb(25, 25, 114);
-    --lt-inactive: rgb(211, 216, 215);
-    --lt-vibrant-contrast: hsl(from var(--lt-bright-contrast) h s 50 / alpha);
-    --lt-error: hsla(335, 95%, 74%, 0.5);
-
-    background-color: var(--lt-background);
-    color: var(--lt-text);
+    background-color: var(--background);
+    color: var(--text);
+    transition: var(--background-color 0.3s ease);
 }
-
-/*  General styling  */
 
 main {
     height: 90vh;
@@ -33,6 +52,10 @@ h2 {
     font-size: 1.4rem;
 }
 
+a {
+    color: var(--text);
+}
+
 ol {
     font-size: 1.1rem;
     margin: 0;
@@ -48,6 +71,8 @@ li {
 input { 
     padding: 0.5rem 1rem;
     font-size: 1rem;
+    background-color: var(--input-background);
+    color: var(--text);
 
     &[type="number"] {
         width: 4rem;
@@ -55,7 +80,7 @@ input {
 
 
     &[type="checkbox"] {
-        accent-color: var(--lt-dark-contrast);
+        accent-color: var(--dark-contrast);
         /* border-radius: 1rem; */
         /* margin: 0 0.5rem; */
     }
@@ -63,28 +88,30 @@ input {
 
 button {
     margin: 0 1rem;
-    padding: 0.5rem;
-    background-color: var(--lt-bright-contrast);
-    border-color: var(--lt-dark-contrast);
+    padding: 1rem;
+
+    background-color: var(--bright-contrast);
+    border-color: var(--dark-contrast);
     border-radius: 1rem;
     font-size: 1rem;
 
     &:hover {
-        box-shadow: 0px 0px 18px -7px var(--lt-dark-contrast);
-        background-color: var(--lt-vibrant-contrast);
+        box-shadow: 0px 0px 18px -7px var(--dark-contrast);
+        background-color: var(--vibrant-contrast);
     }
 
     &:active {
-        box-shadow: 0px 0px 18px -7px var(--lt-dark-contrast) inset;
+        box-shadow: 0px 0px 18px -7px var(--dark-contrast) inset;
     }
 
     &.inactive {
-        background-color: var(--lt-inactive);
+        background-color: var(--inactive);
         box-shadow: none;
         border-style: dotted;
     }
 
     &.inactive, &.delete-row {
+        padding: 0.5rem;
         font-size: 0.8rem;
         line-height: 0.5rem;
         align-self: center;
@@ -103,7 +130,7 @@ button {
     display: grid;
 }
 
-/* ------ Input .interactive grid layout */
+/* ------ Overall  grid layout (on .interactive)*/
 .interactive {
     grid-template-columns: repeat(5, 1fr);
     column-gap: 4rem;
@@ -131,11 +158,10 @@ button {
     }
 }
 
-
-
 /* .schedule-input layout */
 .schedule-input {
     grid-column: 2 / 5 ;
+
 }
 
 /*  .action-buttons layout */
@@ -145,11 +171,9 @@ button {
 
     & button {
         margin:  0 1rem 1rem 1rem;
-        padding: 1rem;
         width: 10rem;
     }
 }
-
 
 /* .description layout */
 
@@ -163,20 +187,20 @@ button {
         width: 18rem;
         padding : 2vh 2vw;
         margin:  1rem;
-        background-color: hsl(from var(--lt-bright-contrast) h s l / 30%);
+        background-color: hsl(from var(--bright-contrast) h s l / 30%);
         border-radius: 1rem;    
     }
 }
 
-
 /* Error/alert styling */
 
 .error-message {
-    background-color: var(--lt-error);
+    background-color: var(--error);
     border-radius: 1rem;
     font-size: 1rem;
 }
 
 .input-error {
-    background-color: var(--lt-error);
+    background-color: var(--error);
 }
+
