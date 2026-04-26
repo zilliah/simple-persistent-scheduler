@@ -22,6 +22,8 @@ export function getInitialTime() {
 // initTime is { start: Temporal.PlainTime, end: Temporal:PlainTime }
  export function calculateTaskTime(tasks, initTime) {
     let calcArray;
+    console.log("initTime is:");
+    console.log(initTime);
     if (initTime.start) {
         return tasks.map((t, i) => {
             i === 0? t.startTime = initTime.start : 
@@ -30,12 +32,11 @@ export function getInitialTime() {
             return t;
         });
     } else if (initTime.end) {
-        return tasks.map((t,i) => {
-            i === 0? t.endTime = initTime.end : 
-                     t.endTime = tasks[i-1].startTime;
-            t.startTime = t.endTime.subtract(t.duration);
-            return t;
-        });
+        let totalDuration = tasks.reduce(
+            (r, curr) => curr.duration.add(r),
+            Temporal.Duration.from({minutes: 0}));
+        let calculatedStartTime = initTime.end.subtract(totalDuration);
+        return calculateTaskTime(tasks, {start: calculatedStartTime});
     }
     return calcArray;
 }
