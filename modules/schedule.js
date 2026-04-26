@@ -50,22 +50,26 @@ export function removeRow(btn) {
     btn.parentElement.remove();
 }
 //note: first row is not deletable and does not have X btn intentionally 
-export function updateRemovalButtons() {
+export function activateRemovalButtons() {
     const btns = document.querySelectorAll(".delete-row");
     btns.forEach(node => {
          node.addEventListener("click", e => removeRow(node));
     });
-
 }
 
 export function showTimes(taskList) {
+    function trimSeconds(str) {
+        return str.slice(0,str.lastIndexOf(":"));
+    }
     const liNodes = document.querySelectorAll("li");
     taskList.forEach((t,i) => {
         let currNode = liNodes[i];
-        let fullTime = t.startTime.toString();
-        currNode.querySelector("span").textContent = fullTime.slice(0,fullTime.lastIndexOf(":"));
+        let spanNodes = currNode.querySelectorAll("span");
+        [spanNodes[0].textContent, spanNodes[1].textContent] = [trimSeconds(t.startTime.toString()), trimSeconds(t.endTime.toString())];
     });
 }
+
+
 
 // -------- TASK/SCHEDULE READ & SAVE FUNCTIONS --------------------
 

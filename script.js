@@ -1,5 +1,5 @@
 import { Task } from "./modules/task.js";
-import { newTaskRow, removeRow, updateRemovalButtons, showTimes, readPageSchedule, saveSchedule, readSavedSchedule, displaySavedSchedule } from "./modules/schedule.js";
+import { newTaskRow, removeRow, activateRemovalButtons, showTimes, readPageSchedule, saveSchedule, readSavedSchedule, displaySavedSchedule } from "./modules/schedule.js";
 import { getInitialTime, calculateTaskTime } from "./modules/time.js"
 import { clearSchedule, clearTimes } from "./modules/clear.js"
 import { clearErrors, displayError, validateDurationInput, validateTaskNameInput} from "./modules/errors.js";
@@ -48,10 +48,10 @@ calculateBtn.addEventListener("click", e => {
 
 
 // ---- PAGE DISPLAY UPDATES --------
-updateRemovalButtons();
+activateRemovalButtons();
 addBtn.addEventListener("click", e => {
     orderedListNode.appendChild(newTaskRow());
-    updateRemovalButtons();
+    activateRemovalButtons();
 });
 
 
