@@ -1,5 +1,5 @@
 import { Task } from "./modules/task.js";
-import { newTaskRow, removeRow, activateRemovalButtons, showTimes, readPageSchedule, saveSchedule, readSavedSchedule, displaySavedSchedule } from "./modules/schedule.js";
+import { newTaskRow, removeRow, activateRemovalButtons, showTaskTimes, readPageSchedule, saveSchedule, readSavedSchedule, displaySavedSchedule } from "./modules/schedule.js";
 import { getInitialTime, calculateTaskTime } from "./modules/time.js"
 import { clearSchedule, clearTimes } from "./modules/clear.js"
 import { clearErrors, displayError, validateDurationInput, validateTaskNameInput} from "./modules/errors.js";
@@ -11,7 +11,13 @@ let schedule = []; //array of Tasks
 
 //check for saved schedule
 const saved = localStorage.getItem("saved-schedule");
-if (saved) displaySavedSchedule(readSavedSchedule(saved), orderedListNode);
+if (saved) {
+    try {
+        displaySavedSchedule(readSavedSchedule(saved), orderedListNode);
+    } catch {
+        displayError("Something was wrong with your saved schedule. Saved schedule has been deleted, sorry. (Might be emojis - don't use them in your task names.)")
+    }
+}
 
 // validate inputs
 // TODO error: these are doubled for added tasks and I'm not sure how to handle it
@@ -43,7 +49,7 @@ calculateBtn.addEventListener("click", e => {
 
     if (!initTime) return null;
     calculateTaskTime(schedule, initTime);
-    showTimes(schedule); 
+    showTaskTimes(schedule); 
 });
 
 

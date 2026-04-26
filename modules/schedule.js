@@ -57,7 +57,7 @@ export function activateRemovalButtons() {
     });
 }
 
-export function showTimes(taskList) {
+export function showTaskTimes(taskList) {
     function trimSeconds(str) {
         return str.slice(0,str.lastIndexOf(":"));
     }
@@ -65,7 +65,7 @@ export function showTimes(taskList) {
     taskList.forEach((t,i) => {
         let currNode = liNodes[i];
         let spanNodes = currNode.querySelectorAll("span");
-        [spanNodes[0].textContent, spanNodes[1].textContent] = [trimSeconds(t.startTime.toString()), trimSeconds(t.endTime.toString())];
+        [spanNodes[0].textContent, spanNodes[1].textContent] = ["Start: " + trimSeconds(t.startTime.toString()), "End: " + trimSeconds(t.endTime.toString())];
     });
 }
 
@@ -112,7 +112,7 @@ export function readSavedSchedule() {
             let taskArr = str.split(":");
             return { name: taskArr[0], duration: Temporal.Duration.from(taskArr[1]) };
         });
-    } else return null;
+    }
 }
 //show saved schedule in editable input boxes
 //returns nothing
