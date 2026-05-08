@@ -10,6 +10,8 @@
     --vibrant-contrast: hsl(from var(--bright-contrast) h s 50 / alpha);
     --error: hsla(335, 95%, 74%, 0.5);
     --input-background: hsl(0, 0%, 100%);
+
+    --schedule-space-between: 0.2rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -64,6 +66,10 @@ ol {
     padding:0 1.5rem;
 }
 
+span, input {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
 
 input { 
     padding: 0.5rem 1rem;
@@ -72,11 +78,15 @@ input {
     border-color: var(--dark-contrast);
     background-color: var(--input-background);
     color: var(--text);
+    font-family: 'Courier New', Courier, monospace;
 
     &[type="number"] {
         width: 4rem;
     }
 
+    &[type="text"] {
+        font-family: inherit;
+    }
 
     &[type="checkbox"] {
         display: none;
@@ -204,7 +214,6 @@ button {
 
     & p {
             margin: 1rem;
-
     }
 }
 
@@ -219,6 +228,7 @@ button {
 @media (width <= 500px) {
     body, main {
         margin: 0;
+        padding: 0;
         align-items: center;
     }
     
@@ -231,16 +241,18 @@ button {
     }
 
     .interactive {
-        grid-template-rows: repeat(3, auto) ;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         
-        width:80vw;
+        /* width:80vw; */
         padding: 1rem 0;
     }
 
     .time-input {
-        grid-column-start: 1;
+        /* grid-column-start: 1;
         grid-row-start: 1;
-        align-items: center;
+        align-items: center; */
         
         & > div {
             width: 100%;
@@ -257,55 +269,61 @@ button {
         }
 
         & button {
-            margin: 1rem 0;
+            margin: 1rem auto;
         }
 
     }
 
     .schedule-input {
-        grid-column-start: 1;
-        grid-row-start: 3;
-        /* width: 82vw; */
+        order: 1;
 
         & ol {
             padding: 0;
         }
 
         & li {
-            width: 100%;
-            grid-template-columns:20vw repeat(2, 40vw) 20vw;
-            grid-template-rows: repeat(2, auto);
-            row-gap: 0.2rem;
-            align-items: center;
-            justify-content: space-between;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* align-items: center;
+            align-content: center; */
 
             margin-bottom: 1rem;
+            font-size: 1rem;
 
 
             /* task name */
             & input[type="text"] {
-                grid-column: 1 / -1;
-                grid-row-start: 1;
+                order: 1;
+                width: 70vw;
+                margin: 0 var(--schedule-space-between) var(--schedule-space-between) 0;
             }
 
             & button {
-                grid-column-end: 5;
-                grid-row-start: 1;
-                /* margin: 0; */
+                order: 2;
+                margin: 0;
+                margin-bottom: var(--schedule-space-between);
             }
 
-            & span, & .hours, & .minutes, & input[type="checkbox"] {
-                grid-row-start: 2;
-                width: auto;
-            }
 
             & span {
-                padding-left: 1rem;
+                order: 3;
+                width: 17.5vw;
+                margin: 0;
             }
 
-            input[type="checkbox"] {
-                height: 1.4rem;
+            & input[type="number"] {
+                order: 4;
+                width: 15vw;
+                margin-left: var(--schedule-space-between);
             }
+
+            & input + span {
+                order: 5;
+                margin-left: var(--schedule-space-between);
+            }
+
+
         }
 
         & button.add-new-row {
@@ -315,8 +333,8 @@ button {
     }
 
     .action-buttons {
-        grid-column-start: 1;
-        grid-row-start: 2;
+        /* grid-column-start: 1; */
+        /* grid-row-start: 2; */
         margin: 2rem auto;
     }
 
@@ -338,11 +356,3 @@ button {
 /*  fine-tuning media queries in between layout breaks  */
 
 
-/* this is hacky and should be fixed 
-    issue: input grid is too far to the right
-    and I can't figure out what's pushing it over  */
-@media (width <= 344px) {
-    .interactive {
-        /* margin-left: -1.5rem; */
-    }
-}
