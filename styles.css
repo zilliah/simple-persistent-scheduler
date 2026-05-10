@@ -204,6 +204,15 @@ button {
         background-color: hsl(from var(--bright-contrast) h s l / 30%);
         border-radius: 1rem;    
     }
+
+    & ul, & p {
+        margin: 1rem;
+        padding-left: 1rem;
+    }
+
+    & li {
+        padding-bottom: 0.8rem;
+    }
 }
 
 /* Error/alert styling */
@@ -349,7 +358,7 @@ button {
         & > div {
             width: 80vw;
             margin: 0.5rem 0;
-            padding: 0 1rem;
+            padding: 1rem;
         }
     }
 
