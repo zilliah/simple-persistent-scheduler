@@ -8,8 +8,11 @@
     --text: hsl(240, 64%, 27%);
     --inactive: hsl(168, 6%, 84%);
     --vibrant-contrast: hsl(from var(--bright-contrast) h s 50 / alpha);
-    --error: hsla(335, 95%, 74%, 0.5);
     --input-background: hsl(0, 0%, 100%);
+
+    --error: hsla(335, 95%, 74%, 0.5);
+    --clear-btn: hsl(from var(--bright-contrast) h 30 90 / alpha);
+
 
     --schedule-space-between: 0.2rem;
 }
@@ -22,8 +25,11 @@
     --text: hsl(175, 0%, 95%);
     --inactive: hsl(180, 4%, 56%);
     --vibrant-contrast: hsl(from var(--bright-contrast) h s 40 / alpha);
-    --error: hsla(335, 95%, 74%, 0.40);
     --input-background: hsl(from var(--background) h 30 40 / alpha);
+
+    --error: hsla(335, 95%, 74%, 0.40);
+    --clear-btn: hsl(from var(--bright-contrast) h 20 60 / alpha);
+
     }
 }
 
@@ -198,7 +204,7 @@ button {
     line-height: 1.4rem;
 
     & div {
-        width: 18rem;
+        width: 30rem;
         padding : 2vh 2vw;
         margin:  1rem;
         background-color: hsl(from var(--bright-contrast) h s l / 30%);
@@ -232,8 +238,13 @@ button {
     background-color: var(--error);
 }
 
+.clear-btn {
+    background-color: var(--clear-btn);
+}
+
 /* layout media queries */
 
+/* smallest screen layout - single column */
 @media (width <= 650px) {
     body, main {
         margin: 0;
@@ -266,7 +277,7 @@ button {
         & > div {
             width: 100%;
             justify-content: center;
-            margin-top: 0.2rem;
+            margin-top: var(--schedule-space-between);
         }
 
         & label {
@@ -366,6 +377,7 @@ button {
     }
 }
 
+/* adjustment between breakpoints */
 @media (width >= 533px) {
     div.schedule-input {
         padding: 1rem;
@@ -374,5 +386,28 @@ button {
             width: 3rem;
             margin-left: 2rem;
         }
+    }
+}
+
+/* medium layout - two column*/
+@media (width > 650px) {
+
+    .interactive {
+        padding: 0.5rem;
+
+        & .time-input{
+            
+            & > div {
+                margin-bottom: var(--schedule-space-between);
+            }
+
+            & label {
+                margin-right: var(--schedule-space-between);
+            }
+        }
+    }
+
+    .description {
+        flex-wrap: wrap;
     }
 }
