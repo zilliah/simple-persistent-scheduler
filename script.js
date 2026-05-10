@@ -18,6 +18,16 @@ let schedule = []; //array of Tasks
 })();
 
 
+//adjust placeholder text to be readable on small screens
+//hours -> H, minutes -> M
+//or maybe just do minutes as "min", hours is 
+if (window.innerWidth <= 500) {
+    console.log("Ur a loser with a tiny screen");
+    //TODO decide if i actually want to do it this way when i'm less sleepy
+    //
+}
+
+
 //check for saved schedule
 const saved = localStorage.getItem("saved-schedule");
 if (saved) {

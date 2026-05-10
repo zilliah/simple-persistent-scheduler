@@ -153,11 +153,12 @@ button {
 
 .time-input {
     flex-direction: column;
+    align-items: center;
 
     & > div {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        /* align-items: center; */
 
     }
 
@@ -208,12 +209,13 @@ button {
 /* Error/alert styling */
 
 .error-message {
-    background-color: var(--error);
-    border-radius: 1rem;
     font-size: 1rem;
-
+    
     & p {
-            margin: 1rem;
+        margin: 1rem;
+        padding: 1rem;
+        border-radius: 1rem;
+        background-color: var(--error);
     }
 }
 
@@ -225,7 +227,7 @@ button {
 
 
 /* smallest layout break */
-@media (width <= 500px) {
+@media (width <= 532px) {
     body, main {
         margin: 0;
         padding: 0;
@@ -349,6 +351,10 @@ button {
             margin: 0.5rem 0;
             padding: 0 1rem;
         }
+    }
+
+    div.error-message {
+        flex-direction: column;
     }
 }
 
