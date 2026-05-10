@@ -234,9 +234,7 @@ button {
 
 /* layout media queries */
 
-
-/* smallest layout break */
-@media (width <= 532px) {
+@media (width <= 650px) {
     body, main {
         margin: 0;
         padding: 0;
@@ -287,6 +285,7 @@ button {
 
     .schedule-input {
         order: 1;
+        padding: 0;
 
         & ol {
             padding: 0;
@@ -367,7 +366,13 @@ button {
     }
 }
 
+@media (width >= 533px) {
+    div.schedule-input {
+        padding: 1rem;
 
-/*  fine-tuning media queries in between layout breaks  */
-
-
+        & span.task-end-time {
+            width: 3rem;
+            margin-left: 2rem;
+        }
+    }
+}
