@@ -393,9 +393,19 @@ button {
 @media (width > 650px) {
 
     .interactive {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 10rem repeat(2, 1fr);
+
+        margin-top: 1rem;
         padding: 0.5rem;
 
+        button {
+            margin: 1rem;
+        }
+
         & .time-input{
+            /* grid-row: 1 / 1; */
+            /* grid-column: 1 / 1; */
             
             & > div {
                 margin-bottom: var(--schedule-space-between);
@@ -404,6 +414,27 @@ button {
             & label {
                 margin-right: var(--schedule-space-between);
             }
+
+            & button {
+                margin-top: 1rem;
+            }
+
+            & .error-message {
+                margin-top: 10rem;
+            }
+        }
+
+        & .schedule-input {
+            grid-column-start: 2;
+            grid-row: 1 / 4;
+        }
+        
+        & .action-buttons {
+            grid-column-start: 1;
+            /* grid-row-start: 2; */
+            order: 2;
+
+            align-items: center;
         }
     }
 

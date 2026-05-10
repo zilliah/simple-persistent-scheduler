@@ -12,7 +12,7 @@ export function getInitialTime() {
     } else if (timeInput.end) {
         workableTime.end = Temporal.PlainTime.from(timeInput.end);
     } else {
-        displayError("No start or end time: tasks have been saved but schedule is not calculated.");
+        displayError("Schedule saved! Add a start or end time to calculate task times.");
         return null;
     }
     return workableTime;
