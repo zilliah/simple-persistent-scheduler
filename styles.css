@@ -159,22 +159,26 @@ button {
 .time-input {
     flex-direction: column;
     align-items: center;
+    gap: var(--schedule-space-between);
 
     & > div {
         display: flex;
         justify-content: space-between;
-        /* align-items: center; */
+        align-items: center;
 
     }
 
+    & label {
+        width: 4.6rem;
+    }
+    
     & input {
         width: 8rem;
         flex-shrink: 0;
+        margin-left: 1rem;
+
     }
 
-    & button {
-        /* margin: 0 1rem; */
-    }
 }
 
 /* .schedule-input layout */
@@ -193,10 +197,58 @@ button {
         border: 1px solid var(--vibrant-contrast);
         display: none;
     }
+
     & span.show {
         display: block;
     }
+
+    & li {
+    grid-template-columns: 45% 45% 10%;
+    grid-template-rows: min-content repeat(2, 2.4rem) min-content;
+    gap: var(--schedule-space-between);
+    align-items: center;
+
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: var(--schedule-space-between) dotted var(--text);
+
+        & span {
+            grid-column: 1 / 2;
+            justify-self: center;
+        }
+
+        & span.task-end-time {
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+            width: auto;
+        }
+
+        & input[type="text"] {
+            grid-column: 1 / 3;
+            grid-row: 2 / 3;
+            text-align: left;
+        }
+
+        & input.hours, & input.minutes {
+            grid-column: 1 / 2;
+            grid-row: 3 / 4;
+            width: auto;
+        }
+        
+        & input.minutes {
+            grid-column: 2 / 3;
+            margin-right: 0;
+        }
+
+        /* CURR not working but maybe just need to get the H/M boxes aligned first? */
+        & button { 
+            grid-row: 2 / 3;
+            grid-column: -1 / 3;
+            margin: var(--schedule-space-between);
+        }
     
+
+    }
 }
 
 /*  .action-buttons layout */
@@ -259,6 +311,58 @@ button {
 
 /* layout media queries */
 
+/* large layout - three column */
+
+/* medium layout - two column*/
+@media (width < 900px) {
+
+    .interactive {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        margin-top: 1rem;
+        padding: 0.5rem;
+
+        button {
+            margin: 1rem;
+        }
+
+        & .time-input{
+            order: 1;
+
+            & button {
+                margin-top: 1rem;
+            }
+        }
+
+        & .schedule-input {
+            grid-column-start: 2;
+            grid-row: 1 / 4;
+            padding: 0;
+            order: 3;
+            
+            & ol {
+                padding: 0;
+            }
+
+        }
+        
+        & .action-buttons {
+            grid-column-start: 1;
+            order: 2;
+
+            align-items: center;
+        }
+    }
+
+    .description {
+        flex-wrap: wrap;
+    }
+}
+
+/* adjustment between breakpoints */
+
+
+
 /* smallest screen layout - single column */
 @media (width <= 650px) {
     body, main {
@@ -279,101 +383,40 @@ button {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        
-        /* width:80vw; */
+        width: 100%;
         padding: 1rem 0;
-    }
-
-    .time-input {
-        /* grid-column-start: 1;
-        grid-row-start: 1;
-        align-items: center; */
         
-        & > div {
-            width: 100%;
-            justify-content: center;
-            margin-top: var(--schedule-space-between);
-        }
-
-        & label {
-            width: 4.6rem;
-            align-self: center;
-        }
-
-        & input {
-            margin-left: 1rem;
-        }
-
-        & button {
-            margin: 1rem auto;
-        }
-
-    }
-
-    .schedule-input {
-        order: 1;
-        padding: 0;
-
-        & ol {
+        & .schedule-input {
+            order: 3;
             padding: 0;
-        }
-
-        & li {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            /* align-items: center;
-            align-content: center; */
-
-            margin-bottom: 0.5rem;
-            padding-left: 1rem;
-            padding-bottom: 0.5rem;
-            gap: var(--schedule-space-between);
-
-            font-size: 1rem;
-
-            border-bottom: var(--schedule-space-between) dotted var(--text);
-
-
-            /* task name */
-            & input[type="text"] {
-                order: 1;
-                width: 70vw;
+    
+            & ol {
+                padding: 0.5rem;
             }
-
-            & button {
-                order: 2;
-                margin: 0;
-            }
-
+    
             & span {
-                order: 5;
-                width: 43%;
-                margin: 0;
-                margin-left: -0.5rem;
+                font-size: 1rem;
+                width: auto;
             }
 
-            & input[type="number"] {
-                order: 4;
-                width: 35%;
+            & button.add-new-row {
+                margin: auto;
+                display: block;
             }
-
-            & input + span {
-                order: 6;
-                margin-left: var(--schedule-space-between);
+        }
+    
+        & .action-buttons {
+            order: 2;
+            margin-bottom: 1rem;
+            
+            & button {
+                margin: 0.4rem;
             }
         }
 
-        & button.add-new-row {
-            margin: auto;
-            display: block;
+        & div.error-message {
+            flex-direction: column;
         }
-    }
-
-    .action-buttons {
-        /* grid-column-start: 1; */
-        /* grid-row-start: 2; */
-        margin: 2rem auto;
     }
 
     .description {
@@ -389,136 +432,4 @@ button {
         }
     }
 
-    div.error-message {
-        flex-direction: column;
-    }
 }
-
-/* adjustment between breakpoints */
-@media (width >= 390px) {
-    .schedule-input li span {
-        width: 35%;
-        margin-left: 0;
-    }
-}
-
-@media (width >= 533px) {
-    div.schedule-input {
-        padding: 1rem;
-    }
-}
-
-/* medium layout - two column*/
-@media (width > 650px) {
-
-    .interactive {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: 12rem repeat(2, 1fr);
-
-        margin-top: 1rem;
-        padding: 0.5rem;
-
-        button {
-            margin: 1rem;
-        }
-
-        & .time-input{
-            /* grid-row: 1 / 1; */
-            /* grid-column: 1 / 1; */
-            
-            & > div {
-                margin-bottom: var(--schedule-space-between);
-            }
-
-            & label {
-                margin-right: var(--schedule-space-between);
-            }
-
-            & button {
-                margin-top: 1rem;
-            }
-
-            & .error-message {
-                margin-top: 10rem;
-            }
-        }
-
-        & .schedule-input {
-            grid-column-start: 2;
-            grid-row: 1 / 4;
-            padding: 0;
-            
-            & ol {
-                padding: 0;
-
-                & li:first-child {
-                    margin-top: 0;
-                }
-            }
-            
-            & li {
-                grid-template-columns: 45% 45% 10%;
-                grid-template-rows: 3.7rem repeat(2, 2.4rem) 3.7rem;
-                align-items: center;
-
-                margin-top: 1rem;
-                padding-bottom: 1rem;
-                border-bottom: var(--schedule-space-between) dotted var(--text);
-
-                & > * {
-                    margin-bottom: var(--schedule-space-between);
-                }
-
-                & span {
-                    grid-column: 1 / 4;
-                }
-
-                input[type="text"] {
-                    grid-column: 1 / 3;
-                    text-align: left;
-
-                }
-
-                input.hours, input.minutes {
-                    grid-column: 1 / 2;
-                    grid-row: 3 / 4;
-                    width: auto;
-                    margin-right: var(--schedule-space-between);
-                }
-                
-                input.minutes {
-                    grid-column: 2 / 3;
-                    margin-right: 0;
-                }
-
-                /* CURR not working but maybe just need to get the H/M boxes aligned first? */
-                & button { 
-                    grid-row: 2 / 3;
-                    grid-column: -1 / 3;
-                    margin: var(--schedule-space-between);
-                    margin-top: 0;
-                }
-                
-                & span.task-end-time {
-                    grid-row: 4 /5;
-                    margin: var(--schedule-space-between);
-                    width: auto;
-                }
-            }
-        }
-        
-        & .action-buttons {
-            grid-column-start: 1;
-            /* grid-row-start: 2; */
-            order: 2;
-
-            align-items: center;
-        }
-    }
-
-    .description {
-        flex-wrap: wrap;
-    }
-}
-
-/* adjustment between breakpoints */
