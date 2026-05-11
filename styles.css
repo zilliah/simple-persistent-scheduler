@@ -191,6 +191,10 @@ button {
         border-radius: 1rem;
         background-color: var(--bright-contrast);
         border: 1px solid var(--vibrant-contrast);
+        display: none;
+    }
+    & span.show {
+        display: block;
     }
     
 }
@@ -342,11 +346,11 @@ button {
                 margin: 0;
             }
 
-
             & span {
                 order: 5;
-                width: 40%;
+                width: 43%;
                 margin: 0;
+                margin-left: -0.5rem;
             }
 
             & input[type="number"] {
@@ -355,10 +359,9 @@ button {
             }
 
             & input + span {
-                order: 5;
+                order: 6;
+                margin-left: var(--schedule-space-between);
             }
-
-
         }
 
         & button.add-new-row {
@@ -392,14 +395,16 @@ button {
 }
 
 /* adjustment between breakpoints */
+@media (width >= 390px) {
+    .schedule-input li span {
+        width: 35%;
+        margin-left: 0;
+    }
+}
+
 @media (width >= 533px) {
     div.schedule-input {
         padding: 1rem;
-
-        & span.task-end-time {
-            width: 3rem;
-            margin-left: 2rem;
-        }
     }
 }
 

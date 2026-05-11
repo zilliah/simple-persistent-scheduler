@@ -8,7 +8,10 @@ export function clearSchedule() {
 
 export function clearTimes() {
     let spanNodes = document.querySelectorAll("li>span");
-    spanNodes.forEach(n => n.textContent = "");
+    spanNodes.forEach(n => {
+        n.textContent = "";
+        n.classList.remove("show");
+    });
 
     let timeInputNodes = document.querySelectorAll("input[type='time']");
     timeInputNodes.forEach(n => n.value = 0);

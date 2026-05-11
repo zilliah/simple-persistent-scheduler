@@ -65,7 +65,12 @@ export function showTaskTimes(taskList) {
     taskList.forEach((t,i) => {
         let currNode = liNodes[i];
         let spanNodes = currNode.querySelectorAll("span");
-        [spanNodes[0].textContent, spanNodes[1].textContent] = ["Start: " + trimSeconds(t.startTime.toString()), "End: " + trimSeconds(t.endTime.toString())];
+        // [spanNodes[0].textContent, spanNodes[1].textContent] = ["Start: " + trimSeconds(t.startTime.toString()), "End: " + trimSeconds(t.endTime.toString())];
+        const readableTimes = ["Start: " + trimSeconds(t.startTime.toString()), "End: " + trimSeconds(t.endTime.toString())];
+        spanNodes.forEach((span,i) => {
+            span.classList.add("show");
+            span.textContent = readableTimes[i];
+        });
     });
 }
 
