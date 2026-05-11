@@ -11,7 +11,7 @@
     --input-background: hsl(0, 0%, 100%);
 
     --error: hsla(335, 95%, 74%, 0.5);
-    --clear-btn: hsl(from var(--bright-contrast) h 30 90 / alpha);
+    --dimmer-contrast: hsl(from var(--bright-contrast) h s l / 30%);
 
 
     --schedule-space-between: 0.2rem;
@@ -28,7 +28,6 @@
     --input-background: hsl(from var(--background) h 30 40 / alpha);
 
     --error: hsla(335, 95%, 74%, 0.40);
-    --clear-btn: hsl(from var(--bright-contrast) h 20 60 / alpha);
 
     }
 }
@@ -182,6 +181,18 @@ button {
 .schedule-input {
     grid-column: 2 / 5 ;
 
+
+    & span {
+        font-size: large;
+        font-weight: 600;
+        color: var(--dark-contrast);
+        padding: 0.5rem;
+        margin: auto;
+        border-radius: 1rem;
+        background-color: var(--bright-contrast);
+        border: 1px solid var(--vibrant-contrast);
+    }
+    
 }
 
 /*  .action-buttons layout */
@@ -207,7 +218,7 @@ button {
         width: 30rem;
         padding : 2vh 2vw;
         margin:  1rem;
-        background-color: hsl(from var(--bright-contrast) h s l / 30%);
+        background-color: var(--dimmer-contrast);
         border-radius: 1rem;    
     }
 
@@ -239,7 +250,7 @@ button {
 }
 
 .clear-btn {
-    background-color: var(--clear-btn);
+    background-color: var(--dimmer-contrast);
 }
 
 /* layout media queries */
@@ -281,7 +292,8 @@ button {
         }
 
         & label {
-            width: 25vw;
+            width: 4.6rem;
+            align-self: center;
         }
 
         & input {
@@ -305,43 +317,45 @@ button {
         & li {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: flex-start;
             /* align-items: center;
             align-content: center; */
 
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            padding-bottom: 0.5rem;
+            gap: var(--schedule-space-between);
+
             font-size: 1rem;
+
+            border-bottom: var(--schedule-space-between) dotted var(--text);
 
 
             /* task name */
             & input[type="text"] {
                 order: 1;
                 width: 70vw;
-                margin: 0 var(--schedule-space-between) var(--schedule-space-between) 0;
             }
 
             & button {
                 order: 2;
                 margin: 0;
-                margin-bottom: var(--schedule-space-between);
             }
 
 
             & span {
-                order: 3;
-                width: 17.5vw;
+                order: 5;
+                width: 40%;
                 margin: 0;
             }
 
             & input[type="number"] {
                 order: 4;
-                width: 15vw;
-                margin-left: var(--schedule-space-between);
+                width: 35%;
             }
 
             & input + span {
                 order: 5;
-                margin-left: var(--schedule-space-between);
             }
 
 
@@ -434,17 +448,17 @@ button {
 
                 & li:first-child {
                     margin-top: 0;
-                    /* background-color: pink; */
                 }
             }
             
             & li {
                 grid-template-columns: 45% 45% 10%;
-                grid-template-rows: 1.5rem repeat(2, 2.4rem) 1.5rem;
+                grid-template-rows: 3.7rem repeat(2, 2.4rem) 3.7rem;
+                align-items: center;
 
                 margin-top: 1rem;
                 padding-bottom: 1rem;
-                border-bottom: var(--schedule-space-between) dotted var(--dark-contrast);
+                border-bottom: var(--schedule-space-between) dotted var(--text);
 
                 & > * {
                     margin-bottom: var(--schedule-space-between);
@@ -486,7 +500,6 @@ button {
                     width: auto;
                 }
             }
-
         }
         
         & .action-buttons {
@@ -502,3 +515,5 @@ button {
         flex-wrap: wrap;
     }
 }
+
+/* adjustment between breakpoints */
