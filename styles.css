@@ -313,6 +313,8 @@ button {
 
 /* large layout - three column */
 
+/* adjustment between breakpoints */
+
 /* medium layout - two column*/
 @media (width < 900px) {
 
@@ -358,10 +360,6 @@ button {
         flex-wrap: wrap;
     }
 }
-
-/* adjustment between breakpoints */
-
-
 
 /* smallest screen layout - single column */
 @media (width <= 650px) {
