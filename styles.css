@@ -1,17 +1,33 @@
 /* colours */
 :root {
     /* light mode colours */
-    --background: hsl(56, 100%, 87%);
-    /* --background: hsl(246, 41%, 90%); */
+    /* --background: hsl(56, 100%, 87%); */
+    --background: hsl(55, 100%, 98%);
+
+/* 
     --bright-contrast: hsl(164, 60%, 82%);
-    --dark-contrast: hsl(240, 62%, 50%);
-    --text: hsl(240, 64%, 27%);
-    --inactive: hsl(168, 6%, 84%);
     --vibrant-contrast: hsl(from var(--bright-contrast) h s 50 / alpha);
+    --dimmer-contrast: hsl(from var(--bright-contrast) h s l / 30%); */
+    
+
+    /* taken from logo colours, but adjusted slightly */
+    /* to account for colour shifting from nearby colours */
+    /* & readability */
+    /* TODO check this during the day */
+    --vibrant-contrast: hsl(164, 60%, 82%);
+    --bright-contrast: hsl(from var(--vibrant-contrast) h s 60 / alpha);
+    --dimmer-contrast: hsl(from var(--bright-contrast) h s l / 30%);
+    --second-contrast: hsl(51, 90%, 75%);
+    --rare-contrast: hsl(108, 70%, 30%);
+    
+    
+    --inactive: hsl(168, 6%, 84%);
+    --dark-contrast: hsl(248, 51%, 41%);
+    --text: hsl(248, 51%, 41%);
+    /* --text: hsl(240, 64%, 27%); */
     --input-background: hsl(0, 0%, 100%);
 
-    --error: hsla(336, 100%, 75%, 1);
-    --dimmer-contrast: hsl(from var(--bright-contrast) h s l / 30%);
+    --error: hsla(336, 100%, 75%, 0.7);
 
 
     --schedule-space-between: 0.2rem;
@@ -63,6 +79,14 @@ h3 {
 
 a {
     color: var(--text);
+
+    &:active, &:hover {
+        color: var(--second-contrast);
+    }
+
+    &:visited {
+        color: var(--rare-contrast);
+    }
 }
 
 ol {
@@ -111,20 +135,6 @@ button {
     font-size: 1rem;
     text-align: center;
 
-    &:hover {
-        box-shadow: 0px 0px 18px -7px var(--dark-contrast);
-        background-color: var(--vibrant-contrast);
-    }
-
-    &:active {
-        box-shadow: 0px 0px 18px -7px var(--dark-contrast) inset;
-    }
-
-    &.inactive {
-        background-color: var(--inactive);
-        box-shadow: none;
-        border-style: dotted;
-    }
 
     &.inactive, &.delete-row {
         align-self: center;
@@ -133,7 +143,25 @@ button {
         padding: 0.5rem;
         font-size: 0.8rem;
         line-height: 0.5rem;
+        background-color: var(--dimmer-contrast);
     }
+
+    &:hover {
+        box-shadow: 0px 0px 18px -7px var(--dark-contrast);
+        background-color: var(--second-contrast);
+    }
+    
+    &:active {
+        box-shadow: 0px 0px 18px -7px var(--dark-contrast) inset;
+        background-color: var(--second-contrast);
+    }
+
+    &.inactive {
+        background-color: var(--inactive);
+        box-shadow: none;
+        border-style: dotted;
+    }
+
 
 }
 
