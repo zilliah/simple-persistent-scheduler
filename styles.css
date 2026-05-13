@@ -36,12 +36,20 @@
 @media (prefers-color-scheme: dark) {
     :root {
     --background: hsl(240, 20%, 27%);
-    --bright-contrast: hsl(175, 50%, 55%);
-    --dark-contrast: hsl(278, 78%, 23%);
     --text: hsl(175, 0%, 95%);
     --inactive: hsl(180, 4%, 56%);
-    --vibrant-contrast: hsl(from var(--bright-contrast) h s 40 / alpha);
     --input-background: hsl(from var(--background) h 30 40 / alpha);
+    
+    --dark-contrast: hsl(278, 78%, 23%);
+    --vibrant-contrast: hsl(from var(--bright-contrast) h s 40 / alpha);
+    --bright-contrast: hsl(175, 50%, 55%);
+
+/* TODO */
+    /* --vibrant-contrast: hsl(164, 60%, 82%);
+    --bright-contrast: hsl(from var(--vibrant-contrast) h s 60 / alpha);
+    --dimmer-contrast: hsl(from var(--bright-contrast) h s l / 30%);
+    --second-contrast: hsl(51, 90%, 75%);
+    --rare-contrast: hsl(108, 70%, 30%); */
 
     --error: hsla(335, 95%, 74%, 0.40);
 
@@ -104,7 +112,7 @@ input {
     padding: 0.5rem 1rem;
     font-size: 1rem;
     /* border-radius: 1rem;  TMP TODO - just square to help see alignment issues*/ 
-    border-color: var(--dark-contrast);
+    border: 2px solid var(--dark-contrast);
     background-color: var(--input-background);
     color: var(--text);
     font-family: 'Courier New', Courier, monospace;
@@ -130,7 +138,7 @@ button {
     padding: 1rem;
 
     background-color: var(--bright-contrast);
-    border-color: var(--dark-contrast);
+    border: 2px solid var(--dark-contrast);
     border-radius: 1rem;
     font-size: 1rem;
     text-align: center;
