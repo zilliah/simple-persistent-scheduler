@@ -1,16 +1,16 @@
 /* colours */
 :root {
     /* light mode colours */
-    --background: rgb(255, 251, 190);
+    --background: hsl(56, 100%, 87%);
     /* --background: hsl(246, 41%, 90%); */
-    --bright-contrast: hsl(161, 57%, 82%);
+    --bright-contrast: hsl(164, 60%, 82%);
     --dark-contrast: hsl(240, 62%, 50%);
     --text: hsl(240, 64%, 27%);
     --inactive: hsl(168, 6%, 84%);
     --vibrant-contrast: hsl(from var(--bright-contrast) h s 50 / alpha);
     --input-background: hsl(0, 0%, 100%);
 
-    --error: hsla(335, 95%, 74%, 0.5);
+    --error: hsla(336, 100%, 75%, 1);
     --dimmer-contrast: hsl(from var(--bright-contrast) h s l / 30%);
 
 
