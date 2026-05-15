@@ -1,12 +1,14 @@
 @font-face {
-    font-family: "openSauceTwoBlack";
-    src: url(/resources/font/OpenSauceTwo-Black.ttf);
-
-    font-family: "openSauceTwoBold";
-    src:url(/resources/font/open-sauce.two-bold.ttf);
-
-    font-family: "openSauceTwoBlackItalic";
-    src:url(/resources/font/OpenSauceTwo-BlackItalic.ttf);
+    font-family: "openSauce";
+    src: url(/resources/font/OpenSauceTwo-BlackItalic.ttf);
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: "openSauce";
+    src: url(/resources/font/open-sauce.two-regular.ttf);
+    font-style: normal;
+    font-display: swap;
 }
 
 /* variables & colour scheme */
@@ -84,18 +86,23 @@ main {
     font-size: 1rem;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
     font-size: 3rem;
-    font-family: "openSauceTwoBlackItalic";
+    font-family: "openSauce";
+    font-style: italic;
     text-align: center;
 }
 
 h2 {
-    font-size: 1.9rem;
+    font-size: 1.7rem;
 }
 
-h3 {
-    font-size: 1.5rem;
+h3, h4 {
+    font-size: 1.2rem;
+}
+
+h4 {
+    font-style: normal;
 }
 
 a {
@@ -181,6 +188,10 @@ button {
         background-color: var(--inactive);
         box-shadow: none;
         border-style: dotted;
+    }
+
+    &#calculate {
+        font-size: 1.1rem;
     }
 
 
@@ -311,7 +322,9 @@ button {
         }
     }
 
-    & li:last-child {
+    & li:first-child {
+        margin-top: 0;
+    }    & li:last-child {
         border-bottom: none;
     }
 }
@@ -323,7 +336,7 @@ button {
 
     & button {
         margin:  0 1rem 1rem 1rem;
-        width: 10rem;
+        width: 11rem;
     }
 }
 
@@ -380,6 +393,7 @@ button {
 
 /* adjustment between breakpoints */
 
+
 /* medium layout - two column*/
 @media (width < 900px) {
 
@@ -397,7 +411,7 @@ button {
             order: 1;
 
             & button {
-                margin: 1rem 0;
+                margin: var(--schedule-space-between) 0 1rem 0;
                 align-self: flex-end;
             }
         }
@@ -410,10 +424,6 @@ button {
             
             & ol {
                 padding: 0;
-
-                & li:first-child {
-                    margin-top: 0;
-                }
             }
 
         }
