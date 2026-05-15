@@ -30,6 +30,7 @@
     --bright-contrast: hsl(from var(--vibrant-contrast) h s 60 / alpha);
     --dimmer-contrast: hsl(from var(--bright-contrast) h s l / 30%);
     --second-contrast: hsl(51, 90%, 75%);
+    /* --second-contrast-dark: hsl(from var(--second-contrast) h 100 65 / alpha); accurate from logo */
     --rare-contrast: hsl(108, 70%, 30%);
     
     
@@ -82,6 +83,7 @@ main {
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    /* align-items: center; */
     justify-content: space-between;
     font-size: 1rem;
 }
@@ -95,6 +97,7 @@ h1, h2, h3, h4 {
 
 h2 {
     font-size: 1.7rem;
+    color: black;
 }
 
 h3, h4 {
@@ -193,10 +196,14 @@ button {
     &#calculate {
         font-size: 1.1rem;
     }
-
-
 }
 
+button, input {
+    &:focus-visible {
+        outline: 2px solid var(--rare-contrast);
+    }
+}
+    
 /* General class styles */
 
 .flex {
@@ -389,21 +396,13 @@ button {
     background-color: var(--dimmer-contrast);
 }
 
-/* layout media queries */
-
-/* large layout - three column */
-
-@media (width >= 1024px) {
-    /* main {
-        align-items: center;
+/* smaller layout media queries */
+@media (width >= 1750px) {
+    main {
+        max-width: 100rem;
+        margin: auto;
     }
-    
-    .interactive {
-        max-width: 2000px;
-        padding: 6vh 4vw;
-    } */
 }
-/* adjustment between breakpoints */
 
 /* medium layout - two column*/
 @media (width < 1024px) {
