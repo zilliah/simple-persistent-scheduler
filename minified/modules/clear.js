@@ -1,0 +1,1 @@
+export function clearSchedule(){localStorage.clear(),clearTimes(),window.location.reload(!0)}export function clearTimes(){let e=document.querySelectorAll("li>span");e.forEach(e=>{e.textContent="",e.classList.remove("show")});let l=document.querySelectorAll("input[type='time']");l.forEach(e=>e.value=0)}

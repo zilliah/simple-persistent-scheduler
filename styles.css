@@ -14,34 +14,24 @@
 /* variables & colour scheme */
 :root {
     /* light mode colours */
-    --background: hsl(55, 100%, 98%);
-
-/* 
-    --bright-contrast: hsl(164, 60%, 82%);
-    --vibrant-contrast: hsl(from var(--bright-contrast) h s 50 / alpha);
-    --dimmer-contrast: hsl(from var(--bright-contrast) h s l / 30%); */
-    
-
     /* taken from logo colours, but adjusted slightly */
     /* to account for colour shifting from nearby colours */
     /* & readability */
-    /* TODO check this during the day */
     --vibrant-contrast: hsl(164, 60%, 82%);
     --bright-contrast: hsl(from var(--vibrant-contrast) h s 60 / alpha);
     --dimmer-contrast: hsl(from var(--bright-contrast) h s l / 30%);
     --second-contrast: hsl(51, 90%, 75%);
-    /* --second-contrast-dark: hsl(from var(--second-contrast) h 100 65 / alpha); accurate from logo */
     --rare-contrast: hsl(108, 70%, 30%);
     
-    
+    --background: hsl(55, 100%, 98%);
     --inactive: hsl(168, 6%, 84%);
     --dark-contrast: hsl(248, 51%, 41%);
     --text: hsl(248, 51%, 41%);
-    /* --text: hsl(240, 64%, 27%); */
+    --text-dark: hsl(248, 68%, 22%);
+    --text-match-logo: black;
     --input-background: hsl(0, 0%, 100%);
 
     --error: hsla(336, 100%, 75%, 0.7);
-
 
     --schedule-space-between: 0.2rem;
     --logo: url(/resources/img/logo.svg);
@@ -49,25 +39,23 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-    --background: hsl(240, 20%, 27%);
-    --text: hsl(175, 0%, 95%);
-    --inactive: hsl(180, 4%, 56%);
-    --input-background: hsl(from var(--background) h 30 40 / alpha);
-    
-    --dark-contrast: hsl(278, 78%, 23%);
-    --vibrant-contrast: hsl(from var(--bright-contrast) h s 40 / alpha);
-    --bright-contrast: hsl(175, 50%, 55%);
+        --vibrant-contrast: hsl(164, 60%, 82%);
+        --bright-contrast: hsl(from var(--vibrant-contrast) h s 60 / alpha);
+        --dimmer-contrast: hsl(from var(--bright-contrast) h s l / 30%);
+        --second-contrast: hsl(51, 90%, 75%);
+        --rare-contrast: hsl(108, 54%, 69%);
 
-/* TODO */
-    /* --vibrant-contrast: hsl(164, 60%, 82%);
-    --bright-contrast: hsl(from var(--vibrant-contrast) h s 60 / alpha);
-    --dimmer-contrast: hsl(from var(--bright-contrast) h s l / 30%);
-    --second-contrast: hsl(51, 90%, 75%);
-    --rare-contrast: hsl(108, 70%, 30%); */
+        --background: hsl(240, 20%, 27%);
+        --text: hsl(175, 0%, 95%);
+        --text-dark: hsl(248, 68%, 22%);
+        --text-match-logo: white;
+        --inactive: hsl(180, 4%, 56%);
+        --input-background: hsl(from var(--background) h 30 40 / alpha);
+        
 
-    --error: hsla(335, 95%, 74%, 0.40);
+        --error: hsla(335, 95%, 74%, 0.40);
 
-    --logo: url(/resources/img/logo-dark.svg);
+        --logo: url(/resources/img/logo-dark.svg);
     }
 }
 
@@ -97,7 +85,7 @@ h1, h2, h3, h4 {
 
 h2 {
     font-size: 1.7rem;
-    color: black;
+    color: var(--text-match-logo);
 }
 
 h3, h4 {
@@ -154,6 +142,9 @@ input {
         /* border-radius: 1rem; */
         /* margin: 0 0.5rem; */
     }
+    &::placeholder{
+        color: hsl(from var(--text) h s l / 50%);
+    }
 }
 
 button {
@@ -166,6 +157,8 @@ button {
     font-size: 1rem;
     text-align: center;
 
+    color: var(--text-dark);
+
 
     &.inactive, &.delete-row {
         align-self: center;
@@ -175,20 +168,24 @@ button {
         font-size: 0.8rem;
         line-height: 0.5rem;
         background-color: var(--dimmer-contrast);
+        color: var(--text);
     }
 
     &:hover {
         box-shadow: 0px 0px 18px -7px var(--dark-contrast);
         background-color: var(--second-contrast);
+        color: var(--text-dark);
     }
     
     &:active {
         box-shadow: 0px 0px 18px -7px var(--dark-contrast) inset;
         background-color: var(--second-contrast);
+        color: var(--text-dark);
     }
 
     &.inactive {
         background-color: var(--inactive);
+        color: var(--text-dark);
         box-shadow: none;
         border-style: dotted;
     }
@@ -222,11 +219,11 @@ button, input {
 
     height: 18vh;
     margin: 1rem 2rem;
+    & h1 {
+        display: none;
+    }
 }
 
-.logo h1 {
-    display: none;
-}
 
 /* ------ Overall  grid layout (on .interactive)*/
 .interactive {
@@ -398,6 +395,7 @@ button, input {
 
 .clear-btn {
     background-color: var(--dimmer-contrast);
+    color: var(--text);
 }
 
 /* layout media queries */
