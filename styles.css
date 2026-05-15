@@ -134,7 +134,7 @@ span, input {
 input { 
     padding: 0.5rem 1rem;
     font-size: 1rem;
-    /* border-radius: 1rem;  TMP TODO - just square to help see alignment issues*/ 
+    border-radius: 0.3rem;
     border: 2px solid var(--dark-contrast);
     background-color: var(--input-background);
     color: var(--text);
@@ -333,8 +333,12 @@ button, input {
 
         & li:first-child {
             margin-top: 0;
-        }    & li:last-child {
+        }    
+        & li:last-child {
             border-bottom: none;
+        }
+        & button:last-child {
+            margin-left: 0;
         }
     }
 
@@ -460,11 +464,6 @@ button, input {
             & ol {
                 padding: 0;
             }
-
-            & button {
-                margin-left: 0;
-            }
-
         }
         
         & .action-buttons {
