@@ -376,6 +376,13 @@ button, input {
         padding-left: 1rem;
     }
 
+    & ul {
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
     & li {
         padding-bottom: 0.8rem;
     }
@@ -426,7 +433,7 @@ button, input {
     .description {
         display: grid;
         grid-template-columns: repeat(3, min-content);
-        grid-template-rows: 32.5rem min-content;
+        grid-template-rows: min-content min-content;
         align-items: flex-start;
         & > div {
             width: 26vw;
@@ -490,11 +497,15 @@ button, input {
         & div {
             width: 43vw;
             padding: 0;
+            padding-bottom: 1rem;
             margin: 1rem 0.5rem;
         }
 
         & div:first-child, & div:last-child {
             order: -1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
         }
     }
 }
