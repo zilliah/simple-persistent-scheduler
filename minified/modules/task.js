@@ -1,1 +1,0 @@
-export class Task{constructor(t,i){this.name=t,this.duration=i,this.startTime=void 0,this.endTime=void 0,this.completed=!1}calcEndTime(t){let i=t||this.startTime;return this.startTime=i,this.endTime=i.add(this.duration),this.endTime}calcStartTime(t){let i=t||this.endTime;return this.endTime=i,this.startTime=i.subtract(this.duration),this.startTime}}
