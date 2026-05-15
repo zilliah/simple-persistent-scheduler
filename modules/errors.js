@@ -19,7 +19,6 @@ export function validateTaskNameInput(node) {
     //todo set string length input limit + show errors
     const textInputErrorMessage = "Task name too long: must be 200 characters or less. Extra characters will be removed.";
     if (!node.checkValidity()){
-        console.log("invalid node!")
         node.classList.add("input-error");
         // display error message for invalid input
         if (!checkForExistingMessage(errorContainer, textInputErrorMessage)) displayError(textInputErrorMessage);
@@ -28,7 +27,6 @@ export function validateTaskNameInput(node) {
     }
     else {
         node.classList.remove("input-error");
-        console.log("valid node")
     }
 
     // TODO next: cut off extra length in processing

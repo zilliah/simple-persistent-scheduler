@@ -22,7 +22,7 @@ let schedule = []; //array of Tasks
 //hours -> H, minutes -> M
 //or maybe just do minutes as "min", hours is 
 if (window.innerWidth <= 500) {
-    console.log("Ur a loser with a tiny screen");
+    // console.log("Ur a loser with a tiny screen");
     //TODO decide if i actually want to do it this way when i'm less sleepy
     //
 }
@@ -92,10 +92,3 @@ clearTimeBtn.addEventListener("click", e => clearTimes());
 //clear schedule
 const clearAllBtn = document.querySelector("#clear-all");
 clearAllBtn.addEventListener("click", e => clearSchedule());
-
-
-// TODO check if browser supports Temporal, show error if not
-
-
-//  TMP TESTING CURR
-// document.querySelector("#test").addEventListener("click", e => verifyCorrectScheduleInput(schedule, orderedListNode));

@@ -1,4 +1,15 @@
-/* colours */
+@font-face {
+    font-family: "openSauceTwoBlack";
+    src: url(/resources/font/OpenSauceTwo-Black.ttf);
+
+    font-family: "openSauceTwoBold";
+    src:url(/resources/font/open-sauce.two-bold.ttf);
+
+    font-family: "openSauceTwoBlackItalic";
+    src:url(/resources/font/OpenSauceTwo-BlackItalic.ttf);
+}
+
+/* variables & colour scheme */
 :root {
     /* light mode colours */
     --background: hsl(55, 100%, 98%);
@@ -30,7 +41,7 @@
 
 
     --schedule-space-between: 0.2rem;
-    --logo: url(/img/logo.svg);
+    --logo: url(/resources/img/logo.svg);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -53,7 +64,7 @@
 
     --error: hsla(335, 95%, 74%, 0.40);
 
-    --logo: url(/img/logo-dark.svg);
+    --logo: url(/resources/img/logo-dark.svg);
     }
 }
 
@@ -74,16 +85,17 @@ main {
 }
 
 h1, h2, h3 {
-    font-size: 2rem;
+    font-size: 3rem;
+    font-family: "openSauceTwoBlackItalic";
     text-align: center;
 }
 
 h2 {
-    font-size: 1.4rem;
+    font-size: 1.9rem;
 }
 
 h3 {
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 a {
@@ -373,7 +385,7 @@ button {
 
     .interactive {
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-rows: min-content repeat(2, 1fr);
         margin-top: 1rem;
         padding: 0.5rem;
 
@@ -386,6 +398,7 @@ button {
 
             & button {
                 margin: 1rem 0;
+                align-self: flex-end;
             }
         }
 
@@ -397,6 +410,10 @@ button {
             
             & ol {
                 padding: 0;
+
+                & li:first-child {
+                    margin-top: 0;
+                }
             }
 
         }
@@ -404,13 +421,28 @@ button {
         & .action-buttons {
             grid-column-start: 1;
             order: 2;
-
             align-items: center;
+
+            & button {
+                margin: 0.5rem 0;
+            }
         }
     }
 
     .description {
         flex-wrap: wrap;
+        flex-direction: row;
+        align-items: flex-start;
+
+        & div {
+            width: 43vw;
+            padding: 0;
+            margin: 1rem 0.5rem;
+        }
+
+        & div:first-child, & div:last-child {
+            order: -1;
+        }
     }
 }
 
@@ -420,6 +452,15 @@ button {
         margin: 0;
         padding: 0;
         align-items: center;
+    }
+
+    h2, h3 {
+        margin: 1rem;
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
     }
     
     button {
@@ -436,6 +477,10 @@ button {
         justify-content: center;
         width: 100%;
         padding: 1rem 0;
+
+        & .time-input button {
+            align-self: center;
+        }
         
         & .schedule-input {
             order: 3;
@@ -476,10 +521,11 @@ button {
         margin-top: 1rem;
         padding-bottom: 0.5rem;
 
-        & > div {
+        & > div, & div:last-child {
             width: 80vw;
             margin: 0.5rem 0;
             padding: 1rem;
+            order: 1;
         }
     }
 
