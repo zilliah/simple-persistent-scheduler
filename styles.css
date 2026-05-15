@@ -396,7 +396,7 @@ button, input {
     background-color: var(--dimmer-contrast);
 }
 
-/* smaller layout media queries */
+/* layout media queries */
 @media (width >= 1750px) {
     main {
         max-width: 100rem;
@@ -404,12 +404,45 @@ button, input {
     }
 }
 
+
+@media (width >= 1300px) {
+    .description {
+        align-items: flex-start;
+        & > div {
+            padding: 1rem;
+        }
+    }
+}
+
+/* 3 column description layout */
+@media (width < 1300px) {
+    .description {
+        display: grid;
+        grid-template-columns: repeat(3, min-content);
+        grid-template-rows: 32.5rem min-content;
+        align-items: flex-start;
+        & > div {
+            width: 26vw;
+            padding: 0.5rem;
+            align-self: stretch;
+            grid-row: 1 / 3;
+        }
+        & > div:first-child {
+            grid-row: 1 / 2;
+        }
+        & > div:last-child {
+            grid-row: 2 / 3;
+        }
+    }
+}
+
+
 /* medium layout - two column*/
 @media (width < 1024px) {
 
     .interactive {
         grid-template-columns: min-content 1fr;
-        grid-template-rows: min-content repeat(2, 1fr);
+        grid-template-rows: min-content 1fr;
         margin-top: 1rem;
         padding: 0.5rem;
 
@@ -446,6 +479,7 @@ button, input {
     }
 
     .description {
+        display: flex;
         flex-wrap: wrap;
         flex-direction: row;
         align-items: flex-start;
