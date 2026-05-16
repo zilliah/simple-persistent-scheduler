@@ -1,0 +1,3 @@
+[build]
+  command = "mkdir -p rifter && cp -r index.html styles.min.css script.js modules/ resources manifest.webmanifest rifter/"
+  publish = "rifter"
