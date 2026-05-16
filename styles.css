@@ -2,6 +2,7 @@
     need to add/remove '/rifer/ to the start of all URLs for deployment
     due to hosting setup
     TODO maybe I can add a script for this to the build process in package.json?
+    - could also update stylesheet in html to only use minified version in prod
 */
 
 
