@@ -1,5 +1,3 @@
-# Rifter 
-
 ![Rifter logo](resources/img/logo.svg)
 
 When you have consistent routines at inconsistent times: Rifter is a simple persistent web scheduler that uses local storage to save your schedule and calculates the start and end times for each task. 
