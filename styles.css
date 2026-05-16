@@ -1,12 +1,12 @@
 @font-face {
     font-family: "openSauce";
-    src: url(/resources/font/OpenSauceTwo-BlackItalic.ttf);
+    src: url(resources/font/OpenSauceTwo-BlackItalic.ttf);
     font-style: italic;
     font-display: swap;
 }
 @font-face {
     font-family: "openSauce";
-    src: url(/resources/font/open-sauce.two-regular.ttf);
+    src: url(resources/font/open-sauce.two-regular.ttf);
     font-style: normal;
     font-display: swap;
 }
@@ -34,7 +34,7 @@
     --error: hsla(336, 100%, 75%, 0.7);
 
     --schedule-space-between: 0.2rem;
-    --logo: url(/resources/img/logo.svg);
+    --logo: url(resources/img/logo.svg);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -54,7 +54,7 @@
 
         --error: hsla(335, 95%, 74%, 0.40);
 
-        --logo: url(/resources/img/logo-dark.svg);
+        --logo: url(resources/img/logo-dark.svg);
     }
 }
 
