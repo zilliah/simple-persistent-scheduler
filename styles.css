@@ -1,3 +1,10 @@
+/* NOTE about urls 
+    need to add/remove '/rifer/ to the start of all URLs for deployment
+    due to hosting setup
+    TODO maybe I can add a script for this to the build process in package.json?
+*/
+
+
 @font-face {
     font-family: "openSauce";
     src: url(/rifter/resources/font/OpenSauceTwo-BlackItalic.ttf);
